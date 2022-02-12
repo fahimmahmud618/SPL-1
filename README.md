@@ -1,5 +1,5 @@
 # SPL-1
-									Teach-Manager   
+								Teach-Manager   
 
 Teach-Manager is a terminal and file based application to manage any kind of teaching organization like school, college, university or coaching center. This application specially can help any startup teaching organization. 
 
