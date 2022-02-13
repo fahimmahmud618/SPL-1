@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1644680489 source:e:\spl-1\login.cpp
+	"header.h"
+
+1644679929 e:\spl-1\header.h
+	<iostream>
+	<windows.h>
+	<conio.h>
+
+1644680241 source:e:\spl-1\main.cpp
+	"header.h"
+
+1644680220 source:e:\spl-1\gotoxy.cpp
+	"header.h"
+
