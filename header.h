@@ -2,8 +2,10 @@
 #define HEADER_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 #include <conio.h>
+
 using namespace std;
 
 void login();
