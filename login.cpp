@@ -3,7 +3,9 @@ using namespace std;
 
 void login()
 {
-    int id;
+    string id, password;
+    string personType, personNickName, personID, personPassword;
+
 
     gotoxy(10,5);
     cout<<"Enter Your User ID: "<<endl;
@@ -13,4 +15,25 @@ void login()
 
     gotoxy(33,5);
     cin>>id;
+
+    gotoxy(33,6);
+    cin>>password;
+
+    ifstream in("userlogininfo.txt");
+    while(in.eof()==0)
+    {
+        in>>personType;
+        in>>personNickName;
+        in>>personID;
+        in>>personPassword;
+
+        if((id==personID)&&(password==personPassword))
+        {
+            cout<<"login complete";
+            break;
+        }
+    }
+
+    cout<<personNickName;
 }
+
