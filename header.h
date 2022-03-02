@@ -5,6 +5,8 @@
 #include <fstream>
 #include <windows.h>
 #include <conio.h>
+#include "person.h"
+#include "student.h"
 
 using namespace std;
 
