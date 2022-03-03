@@ -19,7 +19,14 @@ void gotoxy(int x, int y);
 void color(int color);
 
 void home_admin();
-    void add_student();
+    void home_admin_control_teacher();
+    void home_admin_control_student();
+        void add_student();
+        void modify_student();
+        void delete_student();
+        void view_student_info();
+    void home_admin_control_reports();
+
 
 
 #endif // HEADER_H_INCLUDED
