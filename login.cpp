@@ -5,8 +5,7 @@ void login()
 {
     string id, password;
     string personType, personNickName, personID, personPassword;
-
-
+    
     gotoxy(10,5);
     cout<<"Enter Your User ID: "<<endl;
 
