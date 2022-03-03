@@ -5,7 +5,8 @@ void login()
 {
     string id, password;
     string personType, personNickName, personID, personPassword;
-    
+
+
     gotoxy(10,5);
     cout<<"Enter Your User ID: "<<endl;
 
@@ -28,11 +29,15 @@ void login()
 
         if((id==personID)&&(password==personPassword))
         {
-            cout<<"login complete";
             break;
         }
     }
 
-    cout<<personNickName;
-}
+    cout<<personType;
+    if(personType=="1")
+    {
+        home_admin();
+    }
+    //person p1=person("rahim","12","asd",12);
 
+}
