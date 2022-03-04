@@ -8,8 +8,8 @@ void add_student()
     char* filename;
 
     system("cls");
-    gotoxy(7,3);
-    cout<<"Admin :: Add Student";
+    gotoxy(5,3);
+    cout<<"Admin :: Student Control :: Add Student";
 
     gotoxy(10,5);
     cout<<"1.Add Batchwise";
@@ -22,7 +22,7 @@ void add_student()
 
     system("cls");
     gotoxy(7,3);
-    cout<<"Admin :: Add Student :: Add Batchwise";
+    cout<<"Admin :: Student Control :: Add Student :: Add Batchwise";
     if(choice==1)
     {
 
@@ -55,6 +55,7 @@ void add_student()
     }
     else if(choice==2)
     {
+        cout<<"Admin :: Student Control :: Add Student :: Add Personally";
         gotoxy(10,5);
         cout<<"Enter Batch Serial: ";
 
