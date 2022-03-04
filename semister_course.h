@@ -11,6 +11,7 @@ public:
         float class_test;
         float midterm_mark;
         float final_mark;
+        string course_name;
 
     //calculate total in continious evolution
     float continious_evolution_total()
@@ -24,10 +25,16 @@ public:
     }
 };
 
-class semister
+class semester
 {
 public:
     course courses[6];
+};
+
+class academic
+{
+public:
+    semester semesters[8];
 };
 
 #endif // SEMISTER_COURSE_H_INCLUDED
