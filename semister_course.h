@@ -37,4 +37,3 @@ public:
     semester semesters[8];
 };
 
-#endif // SEMISTER_COURSE_H_INCLUDED
