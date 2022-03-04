@@ -30,7 +30,7 @@ void add_student()
         cout<<"Enter Batch Serial: ";
 
         gotoxy(10,6);
-        cout<<"Total student in the batch";
+        cout<<"Total student in the batch: ";
 
         gotoxy(40,5);
         cin>>batch_serial;
@@ -49,6 +49,7 @@ void add_student()
             else
                 makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(i)+".txt";
             ofstream out(makefilename);
+            out << "No information";
         }
 
     }
@@ -59,19 +60,20 @@ void add_student()
 
         gotoxy(10,6);
         cout<<"Enter New Student's ID: ";
-        
+
         gotoxy(40,5);
         cin>>batch_serial;
-        
+
         gotoxy(40,6);
         cin>>new_student_id;
-        
-        if(i<10)
-                makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+"0"+to_string(i)+".txt";
+
+        if(new_student_id<10)
+                makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+"0"+to_string(new_student_id)+".txt";
             else
-                makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(i)+".txt";
+                makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(new_student_id)+".txt";
             ofstream out(makefilename);
-        
+            out << "No information";
+
     }
 }
 
