@@ -6,7 +6,6 @@ void login()
     string id, password;
     string personType, personNickName, personID, personPassword;
 
-
     gotoxy(10,5);
     cout<<"Enter Your User ID: "<<endl;
 
@@ -38,6 +37,14 @@ void login()
     {
         home_admin();
     }
-    //person p1=person("rahim","12","asd",12);
+    else if(personType=="2")
+    {
+        home_teacher();
+    }
+    else if(personType=="3")
+    {
+        home_student();
+    }
 
+    //person p1=person("rahim","12","asd",12);
 }
