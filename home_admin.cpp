@@ -4,29 +4,15 @@ using namespace std;
 void home_admin()
 {
     int choice,invalid_choice_flag=1;
+    string window_option[10];
 
-    system("cls");
+    basic_window();
+    window_option[0]="Admin Home";
+    window_option[1]="Control Teacher";
+    window_option[2]="Control Student";
+    window_option[3]="Reports";
 
-    gotoxy(5,3);
-    cout<<"Admin Home";
-    gotoxy(10,5);
-    cout<<"1.Control Teacher";
-    gotoxy(10,6);
-    cout<<"2.Control Student";
-    gotoxy(10,7);
-    cout<<"3.Reports";
-
-
-
-    gotoxy(10,13);
-    cout<<"Enter your choice: ";
-    if(invalid_choice_flag==0)
-    {
-        gotoxy(10,15);
-        cout<<"Please Enter a right choice: ";
-    }
-    gotoxy(40,13);
-    cin>>choice;
+    choice = option_input_on_window(window_option,4);
 
     if(choice==1)
     {
@@ -158,4 +144,3 @@ void home_admin_control_reports()
         }
     }
 }
-
