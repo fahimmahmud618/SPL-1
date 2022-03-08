@@ -14,13 +14,17 @@
 #include <ftw.h>
 #include "person.h"
 #include "student.h"
-#include "semister_course.h"
+#include "semester_course.h"
 
 using namespace std;
 
 void login();
 void gotoxy(int x, int y);
 void color(int color);
+
+//function_window
+    void basic_window();
+    int option_input_on_window(string *option_array, int size);
 
 void home_admin();
     void home_admin_control_teacher();
