@@ -26,3 +26,62 @@ bool check_number_or_not(string input)
     return true;
 }
 
+bool encrypt(string taken_file)
+{
+    char ch,oldname[]="temp" ;
+    char* newname=&taken_file[0];
+    int t;
+    ifstream input;
+    ofstream output;
+
+    input.open(taken_file, ios:: binary);
+    output.open("temp",ios::binary);
+
+    if((input)&&(output))
+    {
+        while(!input.eof())
+        {
+            input>>noskipws>>ch;
+            t=ch+100;
+            output<<(char)t;
+        }
+        input.close();
+        output.close();
+        remove(&taken_file[0]);
+        rename(oldname,newname);
+
+        return true;
+    }
+    else
+        return false;
+}
+
+bool decrypt(string taken_file)
+{
+    char ch,oldname[]="temp" ;
+    char* newname=&taken_file[0];
+    int t;
+    ifstream input;
+    ofstream output;
+
+    input.open(taken_file, ios:: binary);
+    output.open("temp",ios::binary);
+
+    if((input)&&(output))
+    {
+        while(!input.eof())
+        {
+            input>>noskipws>>ch;
+            t=ch-100;
+            output<<(char)t;
+        }
+        input.close();
+        output.close();
+        remove(&taken_file[0]);
+        rename(oldname,newname);
+
+        return true;
+    }
+    else
+        return false;
+}
