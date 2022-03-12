@@ -28,7 +28,8 @@ void basic_window()
 
 int option_input_on_window(string *option_array, int size)
 {
-    int i,choice;
+    int i,c;
+    string choice;
     for(i=5;i<(size+5);i++)
     {
         gotoxy(2,i);
@@ -42,5 +43,13 @@ int option_input_on_window(string *option_array, int size)
     cout<<"Enter your choice: ";
     cin>>choice;
 
-    return choice;
+    if(check_number_or_not(choice))
+    {
+        c=stoi(choice);
+        if((c>0)&&(c<=size))
+        return c;
+    }
+
+    else
+        return -1;
 }
