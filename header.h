@@ -29,6 +29,8 @@ void color(int color);
     void gotoxy(int x, int y);
     int calc_string_len(string input);
     bool check_number_or_not(string input);
+    bool encrypt(string taken_file);
+    bool decrypt(string taken_file);
 
 void home_admin();
     void home_admin_control_teacher();
