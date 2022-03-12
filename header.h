@@ -19,12 +19,16 @@
 using namespace std;
 
 void login();
-void gotoxy(int x, int y);
 void color(int color);
 
 //function_window
     void basic_window();
     int option_input_on_window(string *option_array, int size);
+
+//function_basic
+    void gotoxy(int x, int y);
+    int calc_string_len(string input);
+    bool check_number_or_not(string input);
 
 void home_admin();
     void home_admin_control_teacher();
