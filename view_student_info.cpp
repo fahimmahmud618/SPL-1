@@ -16,9 +16,6 @@ void view_student_info()
     gotoxy(10,6);
     cout<<"2.Student in-person info";
 
-    gotoxy(10,13);
-    cout<<"Enter your choice: ";
-
     gotoxy(15,9);
     cout<<"Enter your choice: ";
     cin>>choice;
