@@ -24,6 +24,7 @@ void color(int color);
 //function_window
     void basic_window();
     int option_input_on_window(string *option_array, int size);
+    bool two_confirmation_popup(string title, string option1, string option2);
 
 //function_basic
     void gotoxy(int x, int y);
