@@ -6,16 +6,17 @@ void login()
     string id, password;
     string personType, personNickName, personID, personPassword;
 
-    gotoxy(10,5);
+    basic_window();
+    gotoxy(15,10);
     cout<<"Enter Your User ID: "<<endl;
 
-    gotoxy(10,6);
+    gotoxy(15,11);
     cout<<"Enter Your Password: "<<endl;
 
-    gotoxy(33,5);
+    gotoxy(38,10);
     cin>>id;
 
-    gotoxy(33,6);
+    gotoxy(38,11);
     cin>>password;
 
     ifstream in("userlogininfo.txt");
@@ -44,6 +45,10 @@ void login()
     else if(personType=="3")
     {
         home_student();
+    }
+    else
+    {
+        login();
     }
 
     //person p1=person("rahim","12","asd",12);
