@@ -17,10 +17,6 @@ void basic_window()
     {
         gotoxy(0,i);
         cout<<"|";
-    }
-
-    for(i=4;i<=25;i++)
-    {
         gotoxy(116,i);
         cout<<"|";
     }
@@ -53,3 +49,81 @@ int option_input_on_window(string *option_array, int size)
     else
         return -1;
 }
+
+void color(int color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
+}
+
+bool two_confirmation_popup(string title, string option1, string option2)
+{
+    int total_string_length = calc_string_len(option1)+calc_string_len(option2);
+    int i=116/2;
+    int set[2];
+    int select=1;
+    char key;
+
+    int j = i-total_string_length/2;
+
+    gotoxy(j+1,13);
+    cout<<"Pop up: "<<title;
+    for(i=j;i<=j+(total_string_length+15);i++)
+    {
+        gotoxy(i,12);
+        cout<<"_";
+        gotoxy(i,18);
+        cout<<"_";
+    }
+    for(i=13;i<=18;i++)
+    {
+        gotoxy(116/2-total_string_length/2,i);
+        cout<<"|";
+        gotoxy(j+(total_string_length+15),i);
+        cout<<"|";
+    }
+   for(;;)
+        {
+            //system("cls");
+        if(select==1)
+        {
+            set[0]=12;
+            set[1]=7;
+        }
+        else
+        {
+            set[0]=7;
+            set[1]=12;
+        }
+    //cout<<"new"<<endl;
+        color(set[0]);
+        gotoxy(j+5,16);
+        cout<<option1;
+
+        color(set[1]);
+        gotoxy(j+10+calc_string_len(option1),16);
+        cout<<option2;
+
+        key=_getch();
+
+        if((key=='\r')&&(select==1))
+            return true;
+        else if((key=='\r')&&(select==2))
+            return false;
+
+        if(select==1)
+        {
+            if(key==77)
+                select=2;
+            else
+                select=1;
+        }
+        else
+        {
+            if(key==75)
+                select=1;
+            else
+                select=2;
+        }
+    }
+}
+
