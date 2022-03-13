@@ -1,6 +1,8 @@
 #include "header.h"
 using namespace std;
 
+
+
 void modify_student(int batch_serial, int student_id)
 {
     string filename =".//studentData//batch"+to_string(batch_serial)+"//"+to_string(student_id)+".txt";
@@ -39,9 +41,9 @@ void modify_student(int batch_serial, int student_id)
             cout<<"Enter Student' current semester:";
 
             gotoxy(40,10);
-            getline(cin,student_name);
+            getline(cin>>ws,student_name);
             gotoxy(40,11);
-            getline(cin,student_address);   //bug
+            getline(cin>>ws,student_address);
             gotoxy(40,12);
             cin>>student_age;
             gotoxy(40,13);
