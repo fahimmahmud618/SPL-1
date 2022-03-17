@@ -4,8 +4,8 @@ using namespace std;
 void home_admin()
 {
     int choice,invalid_choice_flag=1;
-    string window_option[10];
 
+    string window_option[10];
     basic_window();
     window_option[0]="Control Teacher";
     window_option[1]="Control Student";
@@ -53,11 +53,16 @@ void home_admin_control_reports()
     file.open(filename);
     if(file)
         {
-            system("cls");
+            basic_window();
             string line_in_file;
+            gotoxy(2,5);
+            cout<<"Reports for you: "<<endl;
+            int i=7;
             while(getline(file,line_in_file))
             {
-                cout<<line_in_file<<endl;
+                gotoxy(2,i);
+                cout<<i-6<<". "<<line_in_file;
+                i++;
             }
         }
 }
