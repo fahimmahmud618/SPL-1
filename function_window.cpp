@@ -129,3 +129,27 @@ bool two_confirmation_popup(string title, string option1, string option2)
     }
 }
 
+bool confirmation_popup(string title)
+{
+    int total_string_length = calc_string_len(title);
+    int i=116/2;
+
+    int j = i-total_string_length/2;
+
+    for(i=j;i<=j+(total_string_length+10);i++)
+    {
+        gotoxy(i,12);
+        cout<<"_";
+        gotoxy(i,18);
+        cout<<"_";
+    }
+    for(i=13;i<=18;i++)
+    {
+        gotoxy(116/2-total_string_length/2,i);
+        cout<<"|";
+        gotoxy(j+(total_string_length+10),i);
+        cout<<"|";
+    }
+    gotoxy(j+5,16);
+    cout<<title;
+}
