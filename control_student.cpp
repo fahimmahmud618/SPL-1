@@ -32,17 +32,14 @@ void home_admin_control_student()
     }
     else if(choice==3)
     {
-        //invalid_choice_flag=1;
         delete_student();
     }
     else if(choice==4)
     {
-        //invalid_choice_flag=1;
         view_student_info();
     }
     else
     {
-       //invalid_choice_flag=0;
        home_admin_control_student();
 
     }
@@ -51,18 +48,14 @@ void home_admin_control_student()
 void add_student()
 {
     int choice,batch_serial,student_number,i,new_student_id;
+    bool dis=true;
     string makefilename;
     string window_option[10];
     char* filename;
 
-    /*basic_window();
-    window_option[0]="Add Batchwise";
-    window_option[1]="Add personally";
-
-    choice = option_input_on_window(window_option,2);*/
-
     if(two_confirmation_popup("How do you want to add?","Add Batchwise","Add Personally"))
     {
+        basic_window();
         gotoxy(10,5);
         cout<<"Enter Batch Serial: ";
 
@@ -87,12 +80,18 @@ void add_student()
                 makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(i)+".txt";
             ofstream out(makefilename);
             out << "No information";
+            if(!out)
+                dis=false;
         }
+            if(dis)
+                confirmation_popup("All the student is registered");
+            else
+                confirmation_popup("Something happend, couldn't register the batch");
 
     }
     else
     {
-        cout<<"Admin :: Student Control :: Add Student :: Add Personally";
+        basic_window();
         gotoxy(10,5);
         cout<<"Enter Batch Serial: ";
 
@@ -109,6 +108,12 @@ void add_student()
                 makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+"0"+to_string(new_student_id)+".txt";
             else
                 makefilename=".//studentData//batch"+to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(new_student_id)+".txt";
+        ofstream out(makefilename);
+        out << "No information";
+            if(out)
+                confirmation_popup("All the student is registered");
+            else
+                confirmation_popup("Something happend, couldn't register the batch");
     }
 }
 
