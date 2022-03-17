@@ -26,28 +26,30 @@ int option_input_on_window(string *option_array, int size)
 {
     int i,c;
     string choice;
-    for(i=5;i<(size+5);i++)
+    int counter =1;
+    for(;;)
     {
-        gotoxy(2,i);
-        cout<<i-4<<". "<<option_array[i-5]<<endl;
+        for(i=5;i<(size+5);i++)
+        {
+            gotoxy(2,i);
+            if((i-4)==counter)
+                color(12);
+            else
+                color(7);
+            cout<<i-4<<". "<<option_array[i-5]<<endl;
+        }
+        char key = _getch();
+
+        if((key==72)&&(counter>1))
+            counter--;
+        else if((key==80)&&(counter<size))
+            counter++;
+        else if(key=='\r')
+        {
+            color(7);
+            return counter;
+        }
     }
-
-    gotoxy(1,i+1);
-    cout<<"----------------";
-
-    gotoxy(2,i+2);
-    cout<<"Enter your choice: ";
-    cin>>choice;
-
-    if(check_number_or_not(choice))
-    {
-        c=stoi(choice);
-        if((c>0)&&(c<=size))
-        return c;
-    }
-
-    else
-        return -1;
 }
 
 void color(int color)
