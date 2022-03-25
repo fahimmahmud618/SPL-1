@@ -11,10 +11,10 @@ public:
 
     void display()
     {
-        cout<<"Student Name: "<<name<<endl<<"ID: "<<id<<endl<<"Address: "<<address;
+        cout<<"Student Name: "<<name<<endl<<"ID: "<<id<<endl<<"Address: "<<address<<endl<<endl;
     }
 
-    void read()
+    void read_data()
     {
         cout<<"Enter name: ";
         cin>>name;
@@ -26,24 +26,46 @@ public:
         cin>>address;
 
     }
+    void storedata()
+    {
+        ofstream out("sample.dat",ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"noooooo";
+
+    }
+    void viewdata()
+    {
+        ifstream in("sample.dat",ios::binary);
+        //in.seekg(sizeof(*this));
+        //cout<<"___"<<in.tellg();
+        in.read((char*)this,sizeof(*this));
+        display();
+
+
+        in.close();
+    }
+
 };
+
+
 int main()
 {
     char word;
-    fstream f("student.dat",ios::binary);
+    int t;
+    //ofstream f("sample.txt");
+    student s1,s2,s3;
+    //s1.read_data();
+    //s2.read_data();
+    //s3.read_data();
+    //s1.viewdata();
 
-    //cout<<f.tellg();
-    //student s1("fahim","1231","chuadanga");
-
-    student s1;
-    s1.read();
-
-
-    f.write((char*)&s1,sizeof(s1));
-
-    fstream r("student.dat",ios::binary);
-    r.read((char*)&s1,sizeof(s1));
-    s1.display();
+    s2.viewdata();
+    s3.viewdata();
     /*while(f.tellg()<7)
     {
         if(f.tellg()>3)
