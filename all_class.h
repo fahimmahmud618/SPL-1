@@ -10,33 +10,55 @@ public:
     string address;
     int age;
 
-    person(string Name, string Id, string Address, int Age)
+    /*person(string Name, string Id, string Address, int Age)
     {
         name= Name;
         Id= id;
         address=Address;
         age=Age;
-    }
+    }*/
 
     void displayInformation()
     {
+        //basic_window();
         cout<<name;
         cout<<id;
         cout<<address;
         cout<<age;
+    }
+    void SetInformation()
+    {
+        cout<<"Name : ";
+        getline(cin>>ws,name);
+        cout<<"ID : ";
+        cin>>id;
+        cout<<"Address : ";
+        getline(cin>>ws,address);
+        cout<<"Age : ";
+        cin>>age;
+
     }
 
 };
 
 class student:public person
 {
+public:
     int current_semister;
+    academic aca;
+    
+    void setcontiniousEvolutionMark(int coure_code)
+    {
+        aca.semesters[current_semister].courses[coure_code].
+    }
 
 };
 
 class teacher:public person
 {
-
+public:
+    student s1;
+    
 };
 
 class course
@@ -72,5 +94,6 @@ class academic
 public:
     semester semesters[8];
 };
+
 
 #endif // ALL_CLASS_H_INCLUDED
