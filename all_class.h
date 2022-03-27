@@ -46,19 +46,34 @@ class student:public person
 public:
     int current_semister;
     academic aca;
-    
-    void setcontiniousEvolutionMark(int coure_code)
+
+    student(string taken_id,int given_current_semister)
     {
-        aca.semesters[current_semister].courses[coure_code].
+        name="No name";
+        address="Unknown/no data";
+        age=0;
+        id=taken_id;
+        current_semister= given_current_semister;
     }
 
+    void set_Student_info_basic(string taken_name, string taken_address, string taken_id, int taken_age, int taken_current_semister)
+    {
+        name=taken_name;
+        address = taken_address;
+        id=taken_address;
+        age = taken_age;
+        current_semister = taken_current_semister;
+    }
+    void promot_student(string taken_student_filename)
+    {
+
+    }
 };
 
 class teacher:public person
 {
 public:
     student s1;
-    
 };
 
 class course
