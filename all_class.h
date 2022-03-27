@@ -64,9 +64,29 @@ public:
         age = taken_age;
         current_semister = taken_current_semister;
     }
-    void promot_student(string taken_student_filename)
-    {
 
+    void promote_or_demote_student(string taken_student_filename,bool action)
+    {
+        ifstream in(taken_student_filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            if(action)
+                current_semister++;
+            else
+                current_semister--;
+        }
+        else
+            cout<<"Error happended";
+
+        ofstream out(taken_student_filename,ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"Error happended";
     }
 };
 
