@@ -12,6 +12,14 @@ public:
         float final_mark;
         string course_name;
 
+        course()
+        {
+            class_test=0;
+            midterm_mark=0;
+            continious_evolution_total_mark=0;
+            final_mark=0;
+        }
+        
     //calculate total in continious evolution
     float set_continious_evolution_mark(string filename, float mark)
     {
@@ -35,7 +43,7 @@ public:
             cout<<"Error happended";
     }
 
-    
+
     float make_course_total(string filename, float assignment_attendanceMark)
     {
         ifstream in(filename,ios::binary);
@@ -57,7 +65,7 @@ public:
         else
             cout<<"Error happended";
     }
-    
+
     float ret_continious_evolution_total(string filename)
     {
         ifstream in(filename,ios::binary);
@@ -67,7 +75,7 @@ public:
             return continious_evolution_total_mark;
         }
     }
-    
+
     float ret_final_total(string filename)
     {
         ifstream in(filename,ios::binary);
@@ -97,14 +105,6 @@ public:
     string address;
     int age;
 
-    /*person(string Name, string Id, string Address, int Age)
-    {
-        name= Name;
-        Id= id;
-        address=Address;
-        age=Age;
-    }*/
-
     void displayInformation()
     {
         //basic_window();
@@ -127,23 +127,43 @@ public:
     }
 
 };
+/*float class_test;
+        float midterm_mark;
+        float continious_evolution_total_mark;
+        float final_mark;*/
 
-class student:public person
+class student:public person,public academic
 {
-    academic a;
-public:
-    int current_semister;
 
+public:
+    //academic a;
+    int current_semister;
+    float academic_mark[8][6][6];
 
     student(string taken_id,int given_current_semister)
     {
+        int i,j,k;
         name="No name";
         address="Unknown/no data";
         age=0;
         id=taken_id;
         current_semister= given_current_semister;
-    }
 
+        for(i=0;i<8;i++)
+        {
+            for(j=0;j<6;j++)
+            {
+                for(k=0;k<6;k++)
+                {
+                    academic_mark[i][j][k]=0;
+                }
+            }
+        }
+    }
+    void notinh()
+    {
+        cout<<semesters[0].courses[0].class_test;
+    }
     void set_Student_info_basic(string taken_name, string taken_address, string taken_id, int taken_age, int taken_current_semister)
     {
         name=taken_name;
