@@ -6,34 +6,22 @@ void home_student()
     string rept_stu_to_admin(".//reports//student_to_admin.txt");
     string report;
     int choice;
-    system("cls");
 
-    gotoxy(5,3);
-    cout<<"Student Home";
-    gotoxy(10,5);
-    cout<<"1.Veiw your Info";
-    gotoxy(10,6);
-    cout<<"2.Make a query";
+    string window_option[10];
+    basic_window();
+    window_option[0]="Veiw your Info";
+    window_option[1]="Make a query";
 
-    gotoxy(10,12);
-    cout<<"Enter your choice: ";
-    gotoxy(40,12);
-    cin>>choice;
+    choice = option_input_on_window(window_option,2);
 
     if(choice==2)
     {
-        system("cls");
-        gotoxy(5,3);
-        cout<<"Student Home :: Make a query";
-        gotoxy(10,5);
-        cout<<"1.To the Admin";
-        gotoxy(10,6);
-        cout<<"2.To the course teacher";
+        string window_option[10];
+        basic_window();
+        window_option[0]="To the Admin";
+        window_option[1]="To the course teacher";
 
-        gotoxy(10,12);
-        cout<<"Enter your choice: ";
-        gotoxy(40,12);
-        cin>>choice;
+        choice = option_input_on_window(window_option,2);
 
         if(choice==1)
         {
@@ -41,18 +29,43 @@ void home_student()
             file.open(".//reports//student_to_admin.txt",std::ios_base::app);
             if(file.is_open())
             {
-               system("cls");
-               gotoxy(10,15);
-               cout<<"Type your report: ";
-               gotoxy(40,15);
-               getline(cin>>ws,report);
-               cout<<"Report is:"<<report;
+               report = taking_report();
                file<<report<<endl;
 
                file.close();
 
-                cout<<"Report Successfully Sent";
+                confirmation_popup("Report/Query sent succcesfully");
             }
         }
+
+        if(choice==2)
+        {
+            ofstream file;
+            file.open(".//reports//student_to_teacher.txt",std::ios_base::app);
+            if(file.is_open())
+            {
+
+               report = taking_report();
+               file<<report<<endl;
+
+               file.close();
+
+                confirmation_popup("Report/Query sent succcesfully");
+            }
+        }
+
     }
+}
+
+string taking_report()
+{
+    string report;
+
+    system("cls");
+    gotoxy(10,15);
+    cout<<"Type your report: ";
+    gotoxy(40,15);
+    getline(cin>>ws,report);
+
+    return report;
 }
