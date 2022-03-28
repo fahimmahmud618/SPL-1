@@ -2,6 +2,93 @@
 #define ALL_CLASS_H_INCLUDED
 #include "header.h"
 using namespace std;
+
+class course
+{
+public:
+        float class_test;
+        float midterm_mark;
+        float continious_evolution_total_mark;
+        float final_mark;
+        string course_name;
+
+    //calculate total in continious evolution
+    float set_continious_evolution_mark(string filename, float mark)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            continious_evolution_total_mark = continious_evolution_total_mark + mark;
+            in.close();
+        }
+        else
+            cout<<"Error happended";
+
+        ofstream out(filename,ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"Error happended";
+    }
+
+    
+    float make_course_total(string filename, float assignment_attendanceMark)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            final_mark = continious_evolution_total_mark + assignment_attendanceMark +midterm_mark;
+            in.close();
+        }
+        else
+            cout<<"Error happended";
+
+        ofstream out(filename,ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"Error happended";
+    }
+    
+    float ret_continious_evolution_total(string filename)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            return continious_evolution_total_mark;
+        }
+    }
+    
+    float ret_final_total(string filename)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            return final_mark;
+        }
+    }
+};
+
+class semester
+{
+public:
+    course courses[6];
+};
+class academic
+{
+public:
+    semester semesters[8];
+};
 class person
 {
 public:
@@ -43,9 +130,10 @@ public:
 
 class student:public person
 {
+    academic a;
 public:
     int current_semister;
-    academic aca;
+
 
     student(string taken_id,int given_current_semister)
     {
@@ -95,40 +183,5 @@ class teacher:public person
 public:
     student s1;
 };
-
-class course
-{
-public:
-        float assignment;
-        float attendance;
-        float class_test;
-        float midterm_mark;
-        float final_mark;
-        string course_name;
-
-    //calculate total in continious evolution
-    float continious_evolution_total()
-    {
-        return assignment+attendance+class_test;
-    }
-
-    float course_total()
-    {
-        return continious_evolution_total()+midterm_mark+final_mark;
-    }
-};
-
-class semester
-{
-public:
-    course courses[6];
-};
-
-class academic
-{
-public:
-    semester semesters[8];
-};
-
 
 #endif // ALL_CLASS_H_INCLUDED
