@@ -6,21 +6,14 @@ void home_teacher()
     string rept_teacher_to_admin(".//reports//teacher_to_admin.txt");
     string report;
     int choice;
-    system("cls");
+    
+    string window_option[10];
+    basic_window();
+    window_option[0]="Set Continious Evolution Mark";
+    window_option[1]="Veiw Students Info";
+    window_option[2]="Make a report";
 
-    gotoxy(5,3);
-    cout<<"Teacher Home";
-    gotoxy(10,5);
-    cout<<"1.Set Continious Evolution Mark";
-    gotoxy(10,6);
-    cout<<"2.Veiw Students Info";
-    gotoxy(10,7);
-    cout<<"3.Make a report";
-
-    gotoxy(10,13);
-    cout<<"Enter your choice: ";
-    gotoxy(40,13);
-    cin>>choice;
+    choice = option_input_on_window(window_option,3);
 
     if(choice==3)
     {
@@ -28,18 +21,15 @@ void home_teacher()
         gotoxy(5,3);
         cout<<"Teacher Home :: Make a Report";
 
-            fstream file;
-            file.open(rept_teacher_to_admin,std::ios_base::app);
-            if(file.is_open())
-            {
-               system("cls");
-               gotoxy(10,15);
-               cout<<"Type your report: ";
-               gotoxy(40,12);
-               getline(cin>>ws,report);  //modification needed for line
-               file<<report;
-
-                cout<<"Report Successfully Sent";
-            }
+        fstream file;
+        file.open(rept_teacher_to_admin,std::ios_base::app);
+        if(file.is_open())
+        {
+            report = taking_report();  
+            file<<report;
+            file.close();
+                
+            confirmation_popup("Report/Query sent succcesfully");
         }
+    }
 }
