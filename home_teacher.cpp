@@ -6,7 +6,7 @@ void home_teacher()
     string rept_teacher_to_admin(".//reports//teacher_to_admin.txt");
     string report;
     int choice;
-    
+
     string window_option[10];
     basic_window();
     window_option[0]="Set Continious Evolution Mark";
@@ -25,10 +25,10 @@ void home_teacher()
         file.open(rept_teacher_to_admin,std::ios_base::app);
         if(file.is_open())
         {
-            report = taking_report();  
-            file<<report;
+            report = taking_report();
+            file<<report<<endl;
             file.close();
-                
+
             confirmation_popup("Report/Query sent succcesfully");
         }
     }
