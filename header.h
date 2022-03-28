@@ -13,7 +13,9 @@
 #include <direct.h>
 #include <ftw.h>
 #include "person.h"
+#include "all_class.h"
 #include "student.h"
+#include "academic.h"
 #include "semester_course.h"
 
 using namespace std;
@@ -45,6 +47,7 @@ void home_admin();
 
 void home_teacher();
 void home_student();
+    string taking_report();
 
 
 #endif // HEADER_H_INCLUDED
