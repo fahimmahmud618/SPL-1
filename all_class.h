@@ -19,7 +19,7 @@ public:
             continious_evolution_total_mark=0;
             final_mark=0;
         }
-        
+
     //calculate total in continious evolution
     float set_continious_evolution_mark(string filename, float mark)
     {
@@ -188,6 +188,28 @@ public:
             cout<<"Error happended";
 
         ofstream out(taken_student_filename,ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"Error happended";
+    }
+
+    void upadate_continious_evolution_mark(string filename, float mark,int semister_num, int course_num)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            continious_evolution_total_mark = semesters[semister_num].courses[course_num].set_continious_evolution_mark();
+            in.close();
+        }
+        else
+            cout<<"Error happended";
+
+        ofstream out(filename,ios::binary);
         if(out)
         {
             out.write((char*)this,sizeof(*this));
