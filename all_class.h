@@ -85,6 +85,7 @@ public:
             return final_mark;
         }
     }
+    
 };
 
 class semester
@@ -138,7 +139,7 @@ class student:public person,public academic
 public:
     //academic a;
     int current_semister;
-    float academic_mark[8][6][6];
+    //float academic_mark[8][6][6];
 
     student(string taken_id,int given_current_semister)
     {
@@ -160,10 +161,7 @@ public:
             }
         }
     }
-    void notinh()
-    {
-        cout<<semesters[0].courses[0].class_test;
-    }
+   
     void set_Student_info_basic(string taken_name, string taken_address, string taken_id, int taken_age, int taken_current_semister)
     {
         name=taken_name;
@@ -203,7 +201,7 @@ public:
         if(in)
         {
             in.read((char*)this,sizeof(*this));
-            continious_evolution_total_mark = semesters[semister_num].courses[course_num].set_continious_evolution_mark();
+            semesters[semister_num].courses[course_num].continious_evolution_total_mark = semesters[semister_num].courses[course_num].set_continious_evolution_mark();
             in.close();
         }
         else
@@ -218,6 +216,8 @@ public:
         else
             cout<<"Error happended";
     }
+    
+    void make
 };
 
 class teacher:public person
