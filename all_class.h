@@ -11,7 +11,7 @@ public:
         float continious_evolution_total_mark;
         float final_mark;
         int attendance_cout;
-        float assignment mark;
+        float assignment_mark;
         string course_name;
 
         course()
@@ -166,25 +166,25 @@ public:
         if(in)
         {
             in.read((char*)this,sizeof(*this));     //gpa have to be added
-            return id+"\t"+name+\t+to_string(semesters[semister_num].courses[course_num].attendance_cout)+"\t"+to_string(semesters[semister_num].courses[course_num].class_test)+"\t"+to_string(semesters[semister_num].courses[course_num].midterm_mark)+"\t"+to_string(semesters[semister_num].courses[course_num].final_mark;)
+            return id+"\t"+name+"\t"+to_string(semesters[semister_num].courses[course_num].attendance_cout)+"\t"+to_string(semesters[semister_num].courses[course_num].class_test)+"\t"+to_string(semesters[semister_num].courses[course_num].midterm_mark)+"\t"+to_string(semesters[semister_num].courses[course_num].final_mark);
             in.close();
         }
     }
-    
+
     string view_student_semister_contdition(string filename, int semister_num)
     {
-        string course_number_string ="Course Numbers: ;
+        string course_number_string ="Course Numbers: ";
         for(int i=0; i<6;i++)
-            course_number_string = course_number_string + " "+to_string(semester[semister_num].courses[i].final_mark);
-            
+            course_number_string = course_number_string +" "+to_string(semesters[semister_num].courses[i].final_mark);
+
         ifstream in(filename,ios::binary);
         if(in)
         {
             in.read((char*)this,sizeof(*this));
-            return to_string(id)+"\t"+name+"\n"+course_number_string;   //cga have to be addded and other things
+            return id+"\t"+name+"\n"+course_number_string;   //cga have to be addded and other things
             in.close();
         }
-        
+
     }
 };
 
