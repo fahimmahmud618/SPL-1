@@ -10,6 +10,8 @@ public:
         float midterm_mark;
         float continious_evolution_total_mark;
         float final_mark;
+        int attendance_cout;
+        float assignment mark;
         string course_name;
 
         course()
@@ -19,73 +21,6 @@ public:
             continious_evolution_total_mark=0;
             final_mark=0;
         }
-
-    //calculate total in continious evolution
-    float set_continious_evolution_mark(string filename, float mark)
-    {
-        ifstream in(filename,ios::binary);
-        if(in)
-        {
-            in.read((char*)this,sizeof(*this));
-            continious_evolution_total_mark = continious_evolution_total_mark + mark;
-            in.close();
-        }
-        else
-            cout<<"Error happended";
-
-        ofstream out(filename,ios::binary);
-        if(out)
-        {
-            out.write((char*)this,sizeof(*this));
-            out.close();
-        }
-        else
-            cout<<"Error happended";
-    }
-
-
-    float make_course_total(string filename, float assignment_attendanceMark)
-    {
-        ifstream in(filename,ios::binary);
-        if(in)
-        {
-            in.read((char*)this,sizeof(*this));
-            final_mark = continious_evolution_total_mark + assignment_attendanceMark +midterm_mark;
-            in.close();
-        }
-        else
-            cout<<"Error happended";
-
-        ofstream out(filename,ios::binary);
-        if(out)
-        {
-            out.write((char*)this,sizeof(*this));
-            out.close();
-        }
-        else
-            cout<<"Error happended";
-    }
-
-    float ret_continious_evolution_total(string filename)
-    {
-        ifstream in(filename,ios::binary);
-        if(in)
-        {
-            in.read((char*)this,sizeof(*this));
-            return continious_evolution_total_mark;
-        }
-    }
-
-    float ret_final_total(string filename)
-    {
-        ifstream in(filename,ios::binary);
-        if(in)
-        {
-            in.read((char*)this,sizeof(*this));
-            return final_mark;
-        }
-    }
-    
 };
 
 class semester
@@ -105,6 +40,8 @@ public:
     string id;
     string address;
     int age;
+    string contract_num;
+    string mail_add;
 
     void displayInformation()
     {
@@ -139,9 +76,11 @@ class student:public person,public academic
 public:
     //academic a;
     int current_semister;
+    int batch_serial;
+    float cgpa;
     //float academic_mark[8][6][6];
 
-    student(string taken_id,int given_current_semister)
+    student(string filename, string taken_id,int given_current_semister)
     {
         int i,j,k;
         name="No name";
@@ -149,19 +88,12 @@ public:
         age=0;
         id=taken_id;
         current_semister= given_current_semister;
-
-        for(i=0;i<8;i++)
-        {
-            for(j=0;j<6;j++)
-            {
-                for(k=0;k<6;k++)
-                {
-                    academic_mark[i][j][k]=0;
-                }
-            }
-        }
+        mail_add="No information";
+        contract_num="NO information";
+        ofstream out(filename,ios::binary);
+        out.write((char*)this,sizeof(*this));
     }
-   
+
     void set_Student_info_basic(string taken_name, string taken_address, string taken_id, int taken_age, int taken_current_semister)
     {
         name=taken_name;
@@ -201,7 +133,7 @@ public:
         if(in)
         {
             in.read((char*)this,sizeof(*this));
-            semesters[semister_num].courses[course_num].continious_evolution_total_mark = semesters[semister_num].courses[course_num].set_continious_evolution_mark();
+            semesters[semister_num].courses[course_num].continious_evolution_total_mark += mark;
             in.close();
         }
         else
@@ -216,8 +148,22 @@ public:
         else
             cout<<"Error happended";
     }
-    
-    void make
+
+    string view_student_basic_info_file(string filename)
+    {
+       ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            return to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
+            in.close();
+        }
+    }
+
+    string view_student_course_condition(string filename, int semister_num, int course_num)
+    {
+        return id+"\t"+name+\t;
+    }
 };
 
 class teacher:public person
