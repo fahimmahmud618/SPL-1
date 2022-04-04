@@ -155,6 +155,7 @@ public:
         if(in)
         {
             in.read((char*)this,sizeof(*this));
+            //batch serial      id      name        cgpa        contract num        mailAddress
             return to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
             in.close();
         }
