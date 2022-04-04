@@ -12,16 +12,16 @@ void home_student()
     window_option[0]="Veiw your Info";
     window_option[1]="Make a query";
 
-    choice = option_input_on_window(window_option,2);
+    choice = option_input_on_window(window_option,2,1);
 
     if(choice==2)
     {
         string window_option[10];
-        basic_window();
+        //basic_window();
         window_option[0]="To the Admin";
         window_option[1]="To the course teacher";
 
-        choice = option_input_on_window(window_option,2);
+        choice = option_input_on_window(window_option,2,2);
 
         if(choice==1)
         {
