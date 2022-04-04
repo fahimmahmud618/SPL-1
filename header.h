@@ -25,9 +25,14 @@ void color(int color);
 
 //function_window
     void basic_window();
-    int option_input_on_window(string *option_array, int size);
+    int option_input_on_window(string *option_array, int size, int side);
     bool two_confirmation_popup(string title, string option1, string option2);
     bool confirmation_popup(string title);
+    vector<string> taking_list_input_on_window(string *option_array, int size, int side);
+
+//function_file
+    bool check_file_if_exits(string filename, string folderName);
+    vector<string> list_of_files(string folder);
 
 //function_basic
     void gotoxy(int x, int y);
@@ -43,11 +48,14 @@ void home_admin();
         void modify_student(int batch_serial, int student_id);
         void delete_student();
         void view_student_info();
+        void register_student(string student_file, string student_id, int semister);
     void home_admin_control_reports();
 
 void home_teacher();
 void home_student();
     string taking_report();
+
+
 
 
 #endif // HEADER_H_INCLUDED
