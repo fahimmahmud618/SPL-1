@@ -3,15 +3,19 @@ using namespace std;
 
 void home_admin()
 {
+    person p;
+
     int choice,invalid_choice_flag=1;
 
     string window_option[10];
     basic_window();
+    //p.SetInformation();
+    //p.displayInformation();
     window_option[0]="Control Teacher";
     window_option[1]="Control Student";
     window_option[2]="Reports";
 
-    choice = option_input_on_window(window_option,3);
+    choice = option_input_on_window(window_option,3,1);
 
     if(choice==1)
     {
@@ -41,7 +45,7 @@ void home_admin_control_reports()
     window_option[0]="Reports from teacher";
     window_option[1]="Reports from students";
 
-    choice = option_input_on_window(window_option,2);
+    choice = option_input_on_window(window_option,2,2);
 
     ifstream file;
     if(choice==1)
