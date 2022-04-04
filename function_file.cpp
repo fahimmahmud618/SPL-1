@@ -9,29 +9,34 @@ int binarySearch(string arr[], string key, int size)
 {
 
 }
-int binarySearch(string arr[], string key,int n)
-    {
-        int l = 0 ;
-        int r = n - 1;
-        while (l <= r)
-        {
-            int m = l + (r - l) / 2;
 
-        int res = -1000;
+vector<string> list_of_files(string folder)
+{
+    vector<string> names;
+    string search_path = folder + "/*.*";
+    WIN32_FIND_DATA fd;
+    HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
+    if(hFind != INVALID_HANDLE_VALUE) {
+        do {
 
-        if (key == (arr[m]))
-            res = 0;
-
-            if (res == 0)
-                return m;
-
-            // If x greater, ignore left half
-            if (key > (arr[m]))
-                l = m + 1;
-
-            else
-                r = m - 1;
-        }
-
-        return -1;
+            if(! (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ) {
+                names.push_back(fd.cFileName);
+            }
+        }while(::FindNextFile(hFind, &fd));
+        ::FindClose(hFind);
     }
+    return names;
+}
+
+bool check_file_if_exits(string filename, string folderName)
+{
+    vector<string> filenames = list_of_files(folderName);
+
+    for(auto E : filenames)
+    {
+        if(E==filename)
+            return true;
+    }
+
+    return false;
+}
