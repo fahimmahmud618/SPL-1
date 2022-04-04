@@ -14,7 +14,7 @@ void home_admin_control_teacher()
     window_option[2]="Delete Teacher";
     window_option[3]="View Teacher's Info";
 
-    choice = option_input_on_window(window_option,4);
+    choice = option_input_on_window(window_option,4,1);
 
     if(choice==1)
     {
