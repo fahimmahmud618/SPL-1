@@ -26,6 +26,13 @@ bool check_number_or_not(string input)
     return true;
 }
 
+double string_to_number(string taken_string)
+{
+    double num;
+    num = stoi(taken_string);
+    return num;
+}
+
 bool encrypt(string taken_file)
 {
     char ch,oldname[]="temp" ;
@@ -58,6 +65,8 @@ bool encrypt(string taken_file)
 
 bool decrypt(string taken_file)
 {
+
+
     char ch,oldname[]="temp" ;
     char* newname=&taken_file[0];
     int t;
