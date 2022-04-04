@@ -13,7 +13,7 @@ void home_teacher()
     window_option[1]="Veiw Students Info";
     window_option[2]="Make a report";
 
-    choice = option_input_on_window(window_option,3);
+    choice = option_input_on_window(window_option,3,1);
 
     if(choice==3)
     {
