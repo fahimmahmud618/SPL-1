@@ -22,16 +22,20 @@ void basic_window()
     }
 }
 
-int option_input_on_window(string *option_array, int size)
+int option_input_on_window(string *option_array, int size, int side)
 {
-    int i,c;
+    int i,c,x_co;
+    if(side==1)
+        x_co=2;
+    else if(side==2)
+        x_co=50;
     string choice;
     int counter =1;
     for(;;)
     {
         for(i=5;i<(size+5);i++)
         {
-            gotoxy(2,i);
+            gotoxy(x_co,i);
             if((i-4)==counter)
                 color(12);
             else
@@ -152,4 +156,34 @@ bool confirmation_popup(string title)
     }
     gotoxy(j+5,16);
     cout<<title;
+}
+
+vector<string> taking_list_input_on_window(string *option_array, int size, int side)
+{
+    vector<string> inputs;
+    string input;
+
+    int i,c,x_co;
+    if(side==1)
+        x_co=2;
+    else if(side==2)
+        x_co=50;
+    string choice;
+    int counter =1;
+
+    for(i=5;i<(size+5);i++)
+        {
+            gotoxy(x_co,i);
+            cout<<option_array[i-5]<<endl;
+        }
+
+    x_co = x_co + 30;
+
+    for(i=5;i<(size+5);i++)
+        {
+            gotoxy(x_co,i);
+            cin>>input;
+            inputs.push_back(input);
+        }
+    return inputs;
 }
