@@ -3,7 +3,9 @@ using namespace std;
 
 void home_admin_control_student()
 {
-    int choice,i,batch_serial,student_id;
+    int choice,i;
+    string batch_serial,student_id;
+    vector<string> inputs;
     string window_option[10];
 
     basic_window();
@@ -20,15 +22,13 @@ void home_admin_control_student()
     }
     else if(choice==2)
     {
-        gotoxy(50,5);
-        cout<<"Enter batch serial of the student";
-        gotoxy(50,6);
-        cout<<"Enter the student id:";
-        gotoxy(90,5);
-        cin>>batch_serial;
-        gotoxy(90,6);
-        cin>>student_id;
-        modify_student(batch_serial,student_id);
+        window_option[0]="Enter batch serial of the student: ";
+        window_option[1]="Enter the student id: ";
+        inputs = taking_list_input_on_window(window_option,2,2);
+
+        batch_serial=inputs[0];
+        student_id=inputs[1];
+        //modify_student(batch_serial,student_id);
     }
     else if(choice==3)
     {
@@ -47,48 +47,40 @@ void home_admin_control_student()
 
 void add_student()
 {
-    int choice,batch_serial,student_number,i,semister_num,student_id;
-    string new_student_id;
+    int choice,student_id,num_student,i;
+    string batch_serial,student_number,semister_num,new_student_id;
     bool dis=true;
-    string makefilename;
-    string window_option[10];
+    string makefilename,window_option[10];
+    vector<string> inputs;
     char* filename;
 
     if(two_confirmation_popup("How do you want to add?","Add Batchwise","Add Personally"))
     {
         basic_window();
-        gotoxy(10,5);
-        cout<<"Enter Batch Serial: ";
+        window_option[0]="Enter Batch Serial: ";
+        window_option[1]="Total student in the batch: ";
+        window_option[2]="Student's semister num: ";
+        inputs=taking_list_input_on_window(window_option,3,2);
 
-        gotoxy(10,6);
-        cout<<"Total student in the batch: ";
+        batch_serial=inputs[0];
+        student_number=inputs[1];
+        semister_num=inputs[2];
 
-        gotoxy(10,7);
-        cout<<"Student's semister num: ";
-
-        gotoxy(40,5);
-        cin>>batch_serial;
-
-        gotoxy(40,6);
-        cin>>student_number;
-
-        gotoxy(40,5);
-        cin>>semister_num;
-
-        makefilename=".//studentData//batch"+to_string(batch_serial);
+        makefilename=".//studentData//batch"+batch_serial;
         filename=&makefilename[0];
         mkdir(filename);
 
-        for(i=1;i<=student_number;i++)
+        num_student=stoi(student_number);
+        for(i=1;i<=num_student;i++)
         {
             if(i<10)
-                new_student_id=to_string(batch_serial)+"//"+to_string(batch_serial)+"0"+to_string(i)+".dat";
+                new_student_id=batch_serial+"//"+batch_serial+"0"+to_string(i)+".dat";
             else
-                new_student_id=to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(i)+".dat";
+                new_student_id=batch_serial+"//"+batch_serial+to_string(i)+".dat";
 
             makefilename=".//studentData//batch"+new_student_id;
 
-            register_student(makefilename,new_student_id,semister_num);
+            register_student(makefilename,new_student_id,stoi(semister_num));
         }
             if(dis)
                 confirmation_popup("All the student is registered");
@@ -99,37 +91,90 @@ void add_student()
     else
     {
         basic_window();
-        gotoxy(10,5);
-        cout<<"Enter Batch Serial: ";
+        window_option[0]="Enter Batch Serial: ";
+        window_option[1]="Enter New Student's ID: ";
+        window_option[2]="Student's semister num: ";
+        inputs=taking_list_input_on_window(window_option,3,2);
 
-        gotoxy(10,6);
-        cout<<"Enter New Student's ID: ";
-
-        gotoxy(10,6);
-        cout<<"Student's semister: ";
-
-        gotoxy(40,5);
-        cin>>batch_serial;
-
-        gotoxy(40,5);
-        cin>>new_student_id;
-
-        gotoxy(40,6);
-        cin>>semister_num;
+        batch_serial=inputs[0];
+        new_student_id=inputs[1];
+        semister_num=inputs[2];
 
         student_id = stoi(new_student_id);
         if(student_id<10)
-                new_student_id=to_string(batch_serial)+"//"+to_string(batch_serial)+"0"+to_string(student_id)+".dat";
+                new_student_id=batch_serial+"//"+batch_serial+"0"+new_student_id+".dat";
             else
-                new_student_id=to_string(batch_serial)+"//"+to_string(batch_serial)+to_string(student_id)+".dat";
+                new_student_id=batch_serial+"//"+batch_serial+new_student_id+".dat";
 
             makefilename=".//studentData//batch"+new_student_id;
 
-        register_student(makefilename,new_student_id,semister_num);
+        register_student(makefilename,new_student_id,stoi(semister_num));
     }
 }
 
 void register_student(string student_file, string student_id, int semister)
 {
     student s(student_file, student_id, semister); //eta to etar header file git e update kora hoini
+}
+
+void delete_student()
+{
+    string batch_serial, student_id;
+    int choice;
+    string makefilename;
+    vector<string> inputs;
+    char* filename;
+
+    string window_option[10];
+
+    basic_window();
+    window_option[0]="Remove Batchwise";
+    window_option[1]="Remove Personally";
+
+    choice = option_input_on_window(window_option,2,2);
+
+    if(choice==1)
+    {
+        gotoxy(10,5);
+        cout<<"Enter Batch Serial: ";
+
+        gotoxy(40,5);
+        cin>>batch_serial;
+
+        makefilename=".//studentData//batch"+batch_serial;
+        filename=&makefilename[0];
+        cout<<filename;                 //bug
+        if(rmdir(filename)==0)
+        {
+            confirmation_popup("Batch removed Succecfully");
+        }
+        else
+            confirmation_popup("Couldn't remove the Batch");
+    }
+
+    else if(choice==2)
+    {
+        window_option[0]="Enter Batch Serial: ";
+        window_option[1]="Enter Student's ID: ";
+
+        inputs = taking_list_input_on_window(window_option,2,2);
+        batch_serial=inputs[0];
+        student_id=inputs[1];
+
+        if(stoi(student_id)<10)
+                makefilename=".//studentData//batch"+batch_serial+"//"+student_id+".dat";
+        else
+                makefilename=".//studentData//batch"+batch_serial+"//"+student_id+".dat";
+        filename=&makefilename[0];
+
+        cout<<filename;
+        if(remove(filename)==0)
+        {
+            confirmation_popup("Student removed Succecfully");
+        }
+        else
+            confirmation_popup("Couldn't remove Student");
+
+    }
+
 }
