@@ -40,3 +40,23 @@ bool check_file_if_exits(string filename, string folderName)
 
     return false;
 }
+
+vector<string> ret_selected_course_of_teacher(string teacher_id)
+{
+    string taken_teacher_id,temp_string;
+    fstream coursefile;
+    vector<string> coursesFromFile;
+
+    coursefile.open(".//academic//teacher_assign_to_course.txt");
+
+    while(coursefile.eof()==0)
+    {
+        getline(coursefile,taken_teacher_id);
+        if(taken_teacher_id==teacher_id)
+        {
+            while((coursefile.peek()!='\n')&&(coursefile>>temp_string))
+            coursesFromFile.push_back(temp_string);
+        }
+    }
+    return coursesFromFile;
+}
