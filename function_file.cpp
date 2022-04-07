@@ -60,3 +60,15 @@ vector<string> ret_selected_course_of_teacher(string teacher_id)
     }
     return coursesFromFile;
 }
+
+int ret_selected_course_num(vector<string> courses)
+{
+    string temp, option[10];
+    int i=0,size = courses.size();
+    for(auto t:courses)
+    {
+        option[i]="Semister "+to_string(t[0])+"Course "+to_string(t[2]);        //ektu bug to string e 
+        i++;
+    }
+    return option_input_on_window(option,i,2);
+}
