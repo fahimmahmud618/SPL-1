@@ -33,6 +33,8 @@ void color(int color);
 //function_file
     bool check_file_if_exits(string filename, string folderName);
     vector<string> list_of_files(string folder);
+    vector<string> ret_selected_course_of_teacher(string teacher_id);
+    int ret_selected_course_num(vector<string> courses);
 
 //function_basic
     void gotoxy(int x, int y);
@@ -51,7 +53,7 @@ void home_admin();
         void register_student(string student_file, string student_id, int semister);
     void home_admin_control_reports();
 
-void home_teacher();
+void home_teacher(string teacher_id);
 void home_student();
     string taking_report();
 
