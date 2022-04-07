@@ -40,7 +40,7 @@ void login()
     }
     else if(personType=="2")
     {
-        home_teacher();
+        home_teacher(personID);
     }
     else if(personType=="3")
     {
