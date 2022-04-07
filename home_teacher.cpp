@@ -1,7 +1,7 @@
 #include "header.h"
 using namespace std;
 
-void home_teacher()
+void home_teacher(string teacher_id)
 {
     string rept_teacher_to_admin(".//reports//teacher_to_admin.txt");
     string report;
@@ -31,5 +31,9 @@ void home_teacher()
 
             confirmation_popup("Report/Query sent succcesfully");
         }
+    }
+    if(choice==1)
+    {
+        ret_selected_course_num(ret_selected_course_of_teacher(teacher_id));
     }
 }
