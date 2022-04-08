@@ -67,8 +67,23 @@ int ret_selected_course_num(vector<string> courses)
     int i=0,size = courses.size();
     for(auto t:courses)
     {
-        option[i]="Semister "+to_string(t[0])+"Course "+to_string(t[2]);        //ektu bug to string e 
+        option[i]="Semister "+to_string(t[0])+"Course "+to_string(t[2]);        //ektu bug to string e
         i++;
     }
-    return option_input_on_window(option,i,2);
+    int choice = option_input_on_window(option,i,2);
+
+}
+
+string func_makeFilename(string batch_serial, string student_id)
+{
+    string new_student_id,makefilename;
+
+    if(convert_stringToNumber(student_id)<10)
+        new_student_id=batch_serial+"//"+batch_serial+"0"+student_id+".dat";
+    else
+        new_student_id=batch_serial+"//"+batch_serial+student_id+".dat";
+
+    makefilename=".//studentData//batch"+new_student_id;
+
+    return makefilename;
 }
