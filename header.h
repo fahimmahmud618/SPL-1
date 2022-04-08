@@ -34,7 +34,8 @@ void color(int color);
     bool check_file_if_exits(string filename, string folderName);
     vector<string> list_of_files(string folder);
     vector<string> ret_selected_course_of_teacher(string teacher_id);
-    int ret_selected_course_num(vector<string> courses);
+    vector<int> ret_selected_course_num(vector<string> courses);
+    string func_makeFilename(string batch_serial, string student_id);
 
 //function_basic
     void gotoxy(int x, int y);
@@ -42,6 +43,8 @@ void color(int color);
     bool check_number_or_not(string input);
     bool encrypt(string taken_file);
     bool decrypt(string taken_file);
+    int convert_stringToNumber(string s);
+
 
 void home_admin();
     void home_admin_control_teacher();
