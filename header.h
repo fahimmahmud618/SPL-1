@@ -49,6 +49,7 @@ void color(int color);
 
 void home_admin();
     void home_admin_control_teacher();
+        void edit_teacher_basic_info(string teacher_id);
     void home_admin_control_student();
         void add_student();
         void modify_student(int batch_serial, int student_id);
@@ -61,8 +62,5 @@ void home_admin();
 void home_teacher(string teacher_id);
 void home_student();
     string taking_report();
-
-
-
 
 #endif // HEADER_H_INCLUDED
