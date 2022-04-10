@@ -98,13 +98,19 @@ public:
         out.write((char*)this,sizeof(*this));
     }
 
-    void set_Student_info_basic(string taken_name, string taken_address, string taken_id, int taken_age, int taken_current_semister)
+    void set_Student_info_basic(string taken_student_filename,string taken_name, string taken_address, int taken_age,string taken_mail, string taken_contract)
     {
-        name=taken_name;
-        address = taken_address;
-        id=taken_address;
-        age = taken_age;
-        current_semister = taken_current_semister;
+        fstream in(taken_student_filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            name=taken_name;
+            address = taken_address;
+            age = taken_age;
+            mail_add = taken_mail;
+            contract_num = taken_contract;
+            in.write((char*)this,sizeof(*this));
+        }
     }
 
     void promote_or_demote_student(string taken_student_filename,bool action)
@@ -196,7 +202,7 @@ public:
 class teacher:public person
 {
 public:
-    student s1;
+    //student s1;
 
     teacher()
     {
@@ -223,6 +229,21 @@ public:
             in.read((char*)this,sizeof(*this));
             //id        name    age     address     mail        contract nm     courses
             return id+"\t"+name+"\t"+to_string(age)+"\t"+address+"\t"+mail_add+"\t"+contract_num+"\t";
+        }
+    }
+
+    void set_Teacher_info_basic(string taken_teacher_filename,string taken_name, string taken_address, int taken_age, string taken_mail,string taken_contract_num)
+    {
+        fstream in(taken_teacher_filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            name=taken_name;
+            address = taken_address;
+            mail_add=taken_mail;
+            contract_num=taken_contract_num;
+            age = taken_age;
+            in.write((char*)this,sizeof(*this));
         }
     }
 
