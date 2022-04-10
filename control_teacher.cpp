@@ -1,5 +1,5 @@
 #include "header.h"
-using namespace std;
+//using namespace std;
 
 void home_admin_control_teacher()
 {
@@ -23,9 +23,8 @@ void home_admin_control_teacher()
         cout<<"Enter New Teacher's ID: ";
         gotoxy(40,5);
         cin>>teacher_id;
-        makefilename=".//teacherData//"+teacher_id+".txt";
-            ofstream out(makefilename);
-            out << "No information";
+        makefilename=".//teacherData//"+teacher_id+".dat";
+        teacher t(makefilename,teacher_id);
     }
     else if(choice==3)
     {
@@ -47,4 +46,28 @@ void home_admin_control_teacher()
             confirmation_popup("Couldn't remove the teacher");
 
     }
+    else if(choice==2)
+    {
+        basic_window();
+        gotoxy(10,5);
+        cout<<"Enter the teacher;s id: ";
+
+        gotoxy(40,5);
+        cin>>teacher_id;
+        edit_teacher_basic_info(teacher_id);
+    }
+}
+
+void edit_teacher_basic_info(string teacher_id)
+{
+    string filename = ".//teacherData//"+teacher_id+".dat",window_option[10];
+    teacher t;
+    window_option[0]="Enter teacher name: ";
+    window_option[1]="Enter teacher's age: ";
+    window_option[2]="Enter teacher's address: ";
+    window_option[3]="Enter teacher's mail-address: ";
+    window_option[4]="Enter teacher's contract-num: ";
+
+    vector<string> inputs = taking_list_input_on_window(window_option,5,2);
+    t.set_Teacher_info_basic(filename,inputs[0],inputs[2],stoi(inputs[1]),inputs[3],inputs[4]);
 }
