@@ -61,9 +61,10 @@ vector<string> ret_selected_course_of_teacher(string teacher_id)
     return coursesFromFile;
 }
 
-int ret_selected_course_num(vector<string> courses)
+vector<int> ret_selected_course_num(vector<string> courses)
 {
     string temp, option[10];
+    vector<int> outputs;
     int i=0,size = courses.size();
     for(auto t:courses)
     {
@@ -71,7 +72,11 @@ int ret_selected_course_num(vector<string> courses)
         i++;
     }
     int choice = option_input_on_window(option,i,2);
+    temp = courses[choice-1];
+    outputs.push_back((int)temp[0]);
+    outputs.push_back((int)temp[2]);
 
+    return outputs;
 }
 
 string func_makeFilename(string batch_serial, string student_id)
@@ -87,3 +92,21 @@ string func_makeFilename(string batch_serial, string student_id)
 
     return makefilename;
 }
+
+string ret_batchSerial(string semister_num)
+{
+    fstream file;
+    string temp_string;
+    file.open(".//academic//batchwise_semister.txt");
+    while(file.eof()==0)
+    {
+        getline(file,temp_string);
+        if(temp_string==semister_num)
+        {
+            getline(file,temp_string);
+            break;
+        }
+    }
+    return temp_string;
+}
+
