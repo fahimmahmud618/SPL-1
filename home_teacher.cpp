@@ -34,13 +34,6 @@ void home_teacher(string teacher_id)
     }
     if(choice==1)
     {
-        if(two_confirmation_popup("How do you want to update the continious evolution mark?","Batchwise","For a particular student"))
-        {
-            for(auto a: list_of_files())
-        }
-        
-        vector<int> choice1=ret_selected_course_num(ret_selected_course_of_teacher(teacher_id));
-        student s;
-        s.upadate_continious_evolution_mark(func_makeFilename("12","1201"),2.3,choice1[0],choice1[1]);
+        update_continious_evolution_mark(teacher_id);
     }
 }
