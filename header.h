@@ -27,7 +27,7 @@ void color(int color);
     void basic_window();
     int option_input_on_window(string *option_array, int size, int side);
     bool two_confirmation_popup(string title, string option1, string option2);
-    bool confirmation_popup(string title);
+    void confirmation_popup(string title);
     vector<string> taking_list_input_on_window(string *option_array, int size, int side);
 
 //function_file
@@ -36,6 +36,7 @@ void color(int color);
     vector<string> ret_selected_course_of_teacher(string teacher_id);
     vector<int> ret_selected_course_num(vector<string> courses);
     string func_makeFilename(string batch_serial, string student_id);
+    string ret_batchSerial(string semister_num);
 
 //function_basic
     void gotoxy(int x, int y);
@@ -54,6 +55,7 @@ void home_admin();
         void delete_student();
         void view_student_info();
         void register_student(string student_file, string student_id, int semister);
+        void update_continious_evolution_mark(string person_id);
     void home_admin_control_reports();
 
 void home_teacher(string teacher_id);
