@@ -80,6 +80,10 @@ public:
     float cgpa;
     //float academic_mark[8][6][6];
 
+    student()
+    {
+
+    }
     student(string filename, string taken_id,int given_current_semister)
     {
         int i,j,k;
@@ -193,6 +197,35 @@ class teacher:public person
 {
 public:
     student s1;
+
+    teacher()
+    {
+
+    }
+
+    teacher(string filename, string taken_id)
+    {
+        name="No name";
+        address="Unknown/no data";
+        age=0;
+        id=taken_id;
+        mail_add="No information";
+        contract_num="NO information";
+        ofstream out(filename,ios::binary);
+        out.write((char*)this,sizeof(*this));
+    }
+
+    string view_teacher_info(string filename)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            //id        name    age     address     mail        contract nm     courses
+            return id+"\t"+name+"\t"+to_string(age)+"\t"+address+"\t"+mail_add+"\t"+contract_num+"\t";
+        }
+    }
+
 };
 
 #endif // ALL_CLASS_H_INCLUDED
