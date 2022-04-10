@@ -178,3 +178,38 @@ void delete_student()
     }
 
 }
+
+void update_continious_evolution_mark(string person_id)
+{
+    string window_option[100];
+    int i=0;
+    if(two_confirmation_popup("How do you want to update the mark?","Batchwise","Personally"))
+    {
+        basic_window();
+        vector<int> choice=ret_selected_course_num(ret_selected_course_of_teacher(person_id));
+        vector<string> student_files;
+        student s;
+
+        string batch_serial = ret_batchSerial(to_string(choice[0]));
+        string filename = ".//studentData//"+batch_serial;      //modification needed
+        cout<<filename;
+        student_files  = list_of_files(filename);
+        for(auto student_file : student_files)
+        {
+            window_option[i]="Enter mark for student "+student_file;
+            i++;
+        }
+        vector<string> taken_marks = taking_list_input_on_window(window_option,i,1);
+        for(i=0;i<student_files.size();i++)
+        {
+            s.upadate_continious_evolution_mark(student_files[i],stof(taken_marks[i]),choice[0],choice[1]);
+
+        }
+        /*for((auto student_file1 : student_files)&&( auto mark : taken_marks))
+        {
+            s.upadate_continious_evolution_mark(student_file1,stof(mark),choice[0],choice[1]);
+        }*/
+        //s.upadate_continious_evolution_mark(func_makeFilename("12","1201"),2.3,choice[0],choice[1]);
+    }
+
+}
