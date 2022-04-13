@@ -33,7 +33,7 @@ void home_admin_control_teacher()
         cout<<"Enter New Teacher's ID: ";           //modification
         gotoxy(40,5);
         cin>>teacher_id;
-        makefilename=".//teacherData//"+teacher_id+".txt";
+        makefilename=".//teacherData//"+teacher_id+".dat";
 
         filename=&makefilename[0];
 
@@ -70,4 +70,21 @@ void edit_teacher_basic_info(string teacher_id)
 
     vector<string> inputs = taking_list_input_on_window(window_option,5,2);
     t.set_Teacher_info_basic(filename,inputs[0],inputs[2],stoi(inputs[1]),inputs[3],inputs[4]);
+}
+
+void view_teacher_info_func(string teacher_id)      //connection needed
+{
+    teacher t;
+    if(teacher_id=="All")
+    {
+            vector<string> files = list_of_files(".//teacherData");
+            for(auto teacher_file : files)
+                cout<<t.view_teacher_info(teacher_file)<<endl;
+    }
+    else
+    {
+        string filename = ".//teacherData"+teacher_id+".dat";
+        cout<<t.view_teacher_info(filename)<<endl;
+    }
+
 }
