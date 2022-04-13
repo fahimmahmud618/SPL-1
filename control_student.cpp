@@ -36,7 +36,7 @@ void home_admin_control_student()
     }
     else if(choice==4)
     {
-        view_student_info();
+        //view_student_info();
     }
     else
     {
@@ -215,8 +215,7 @@ void update_continious_evolution_mark(string person_id)
     }
     else
     {
-        basic_window();
-        color(7);
+
         window_option[0]="Enter roll no: ";
         window_option[1]="Enter mark: ";
         vector<string> inputs = taking_list_input_on_window(window_option,2,2);
@@ -224,4 +223,28 @@ void update_continious_evolution_mark(string person_id)
         s.upadate_continious_evolution_mark(filename,stof(inputs[1]),choice[0],choice[1]);
     }
 
+}
+
+void view_student_info_basic(string batch_serial, string student_id)        //test needed+modification
+{
+    int choice;
+    string makefilename,option_window[5];
+    char* filename;
+    student s;
+    /*option_window[0]="Batch wise Info";
+    option_window[1]="Student in-person info";
+    choice = option_input_on_window(option_window,2,2);*/
+
+    if(student_id=="All")
+    {
+        makefilename=".//studentData//batch"+batch_serial;
+        vector<string> files = list_of_files(makefilename);
+        for(auto student_file : files)
+            cout<<s.view_student_basic_info_file(student_file)<<endl;
+    }
+    else
+    {
+        makefilename=".//studentData//batch"+batch_serial+student_id+".dat";
+            cout<<s.view_student_basic_info_file(makefilename)<<endl;
+    }
 }
