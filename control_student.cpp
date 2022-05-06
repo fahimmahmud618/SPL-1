@@ -248,3 +248,37 @@ void view_student_info_basic(string batch_serial, string student_id)        //te
             cout<<s.view_student_basic_info_file(makefilename)<<endl;
     }
 }
+
+void view_students_condition(string batch_serial,string course_or_sem)
+{
+    string makefilename;
+    student s;
+    makefilename=".//studentData//batch"+batch_serial;
+    vector<string> files = list_of_files(makefilename);
+
+    if(course_or_sem=="course")
+    {
+        for(auto student_file : files)
+            cout<<s.view_student_course_condition(student_file,s.ret_current_semsister(student_file),1)<<endl;
+    }
+    else if(course_or_sem=="sem")
+    {
+        for(auto student_file : files)
+            cout<<s.view_student_semister_contdition(student_file,s.ret_current_semsister(student_file))<<endl;
+    }
+
+}
+
+void make_marksheet()
+{
+    string batch_serial;
+    basic_window();
+    cout<<"Enter batch serial to make marksheet : ";
+    cin>>batch_serial;
+    student s;
+
+    if(two_confirmation_popup("For which semister, you want to make marksheet?","Current Semister","Previous Semister"))
+    {
+
+    }
+}
