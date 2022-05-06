@@ -86,7 +86,6 @@ public:
     }
     student(string filename, string taken_id,int given_current_semister)
     {
-        int i,j,k;
         name="No name";
         address="Unknown/no data";
         age=0;
@@ -196,6 +195,49 @@ public:
             in.close();
         }
 
+    }
+
+    vector<string> marksheet_lines(string filename,int semister_num)
+    {
+        vector<string> lines;
+        vector<string> course_name;
+        string temp_string;
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            lines.push_back("Student Name: "+name);
+            lines.push_back("Student ID: "+id);
+            lines.push_back("Batch "+to_string(batch_serial));
+            lines.push_back("Current Semister: "+to_string(current_semister));
+            lines.push_back(" ");lines.push_back(" ");lines.push_back(" ");
+            lines.push_back("SNo.\tCourse Name\tCE\tMidterm\tFinal Total");
+
+            for(int i=0;i<6;i++)
+            {
+                temp_string = to_string(i+1)+"\t"+course_name[i]+"\t"
+                                +to_string(semesters[semister_num].courses[i].continious_evolution_total_mark)+"\t"
+                                +to_string(semesters[semister_num].courses[i].midterm_mark)+"\t"
+                                +to_string(semesters[semister_num].courses[i].final_mark);
+
+                lines.push_back(temp_string);
+
+            }
+
+        }
+        return lines;
+
+    }
+
+    int ret_current_semsister(string filename)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            return current_semister;
+            in.close();
+        }
     }
 };
 
