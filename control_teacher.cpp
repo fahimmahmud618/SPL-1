@@ -56,6 +56,16 @@ void home_admin_control_teacher()
         cin>>teacher_id;
         edit_teacher_basic_info(teacher_id);
     }
+    else if(choice==4)
+    {
+        basic_window();
+        gotoxy(10,5);
+        cout<<"Enter the teacher;s id: ";
+
+        gotoxy(40,5);
+        cin>>teacher_id;
+        view_teacher_info_func(teacher_id);
+    }
 }
 
 void edit_teacher_basic_info(string teacher_id)
@@ -72,7 +82,7 @@ void edit_teacher_basic_info(string teacher_id)
     t.set_Teacher_info_basic(filename,inputs[0],inputs[2],stoi(inputs[1]),inputs[3],inputs[4]);
 }
 
-void view_teacher_info_func(string teacher_id)      //connection needed
+void view_teacher_info_func(string teacher_id)
 {
     teacher t;
     if(teacher_id=="All")
