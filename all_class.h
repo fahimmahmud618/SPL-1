@@ -203,6 +203,7 @@ public:
         vector<string> course_name;
         string temp_string;
         ifstream in(filename,ios::binary);
+        float total_num=0.0,letter_point=0.0;
         if(in)
         {
             in.read((char*)this,sizeof(*this));
@@ -218,14 +219,70 @@ public:
                 temp_string = to_string(i+1)+"\t"+course_name[i]+"\t"
                                 +to_string(semesters[semister_num].courses[i].continious_evolution_total_mark)+"\t"
                                 +to_string(semesters[semister_num].courses[i].midterm_mark)+"\t"
-                                +to_string(semesters[semister_num].courses[i].final_mark);
+                                +to_string(semesters[semister_num].courses[i].final_mark)+"\t"
+                                +ret_gpa_letter(semesters[semister_num].courses[i].final_mark)+"\t"
+                                +ret_gpa_point(semesters[semister_num].courses[i].final_mark);
 
+                total_num = total_num + semesters[semister_num].courses[i].final_mark;
+                letter_point = letter_point + stof(ret_gpa_letter(semesters[semister_num].courses[i].final_mark));
                 lines.push_back(temp_string);
 
             }
 
+            lines.push_back(" ");lines.push_back(" ");lines.push_back(" ");
+            lines.push_back("Total number in the semister: "+to_string(total_num));
+            lines.push_back("GPA : "+to_string(letter_point/6));
+            cgpa = (cgpa*(semister_num-1)+(letter_point/6))/semister_num;
+            lines.push_back("CGPA : "+to_string(cgpa));
+
         }
         return lines;
+
+    }
+
+    string ret_gpa_letter(float mark)
+    {
+        if((mark>=80)&&(mark<=100))
+            return "A+";
+        else if((mark>=75)&&(mark<80))
+            return "A";
+        else if((mark>=70)&&(mark<75))
+            return "A-";
+        else if((mark>=65)&&(mark<70))
+            return "B+";
+        else if((mark>=60)&&(mark<65))
+            return "B";
+        else if((mark>=55)&&(mark<60))
+            return "B-";
+        else if((mark>=50)&&(mark<55))
+            return "C";
+        else if((mark>=40)&&(mark<50))
+            return "D";
+        else
+            return "F";
+
+    }
+
+    string ret_gpa_point(float mark)
+    {
+        if((mark>=80)&&(mark<=100))
+            return "4.00";
+        else if((mark>=75)&&(mark<80))
+            return "3.75";
+        else if((mark>=70)&&(mark<75))
+            return "3.50";
+        else if((mark>=65)&&(mark<70))
+            return "3.25";
+        else if((mark>=60)&&(mark<65))
+            return "3.00";
+        else if((mark>=55)&&(mark<60))
+            return "2.75";
+        else if((mark>=50)&&(mark<55))
+            return "2.50";
+        else if((mark>=40)&&(mark<50))
+            return "2.00";
+        else
+            return "0.00";
 
     }
 
