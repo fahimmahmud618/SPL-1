@@ -276,9 +276,33 @@ void make_marksheet()
     cout<<"Enter batch serial to make marksheet : ";
     cin>>batch_serial;
     student s;
+    string makefilename=".//studentData//batch"+batch_serial;
+    vector<string> files;
+    vector<string> lines;
 
-    if(two_confirmation_popup("For which semister, you want to make marksheet?","Current Semister","Previous Semister"))
-    {
+        files = list_of_files(makefilename);
 
-    }
+            cout<<"Enter the folder name to save the marksheets : ";
+            cin>>makefilename;
+            makefilename = ".//marksheet//"+makefilename;
+            mkdir(&makefilename[0]);
+            string foldername = makefilename;
+
+        for(auto student_file : files)
+        {
+            lines = s.marksheet_lines(student_file,s.ret_current_semsister(student_file));
+            string filename = foldername+"//"+s.id+" semister "+to_string(s.ret_current_semsister(student_file))+" marksheet";
+
+            ofstream out(filename);
+            if(out)
+            {
+                for(auto linesOfMarksheet : lines)
+                {
+                    out<<linesOfMarksheet;
+                }
+                out.close();
+            }
+
+        }
+
 }
