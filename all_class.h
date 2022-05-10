@@ -158,6 +158,28 @@ public:
             cout<<"Error happended";
     }
 
+    void upadate_attendance(string filename,int semister_num, int course_num)
+    {
+        ifstream in(filename,ios::binary);
+        if(in)
+        {
+            in.read((char*)this,sizeof(*this));
+            semesters[semister_num].courses[course_num].attendance_cout ++;
+            in.close();
+        }
+        else
+            cout<<"Error happended";
+
+        ofstream out(filename,ios::binary);
+        if(out)
+        {
+            out.write((char*)this,sizeof(*this));
+            out.close();
+        }
+        else
+            cout<<"Error happended";
+    }
+
     string view_student_basic_info_file(string filename)
     {
        ifstream in(filename,ios::binary);
