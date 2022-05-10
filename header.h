@@ -60,6 +60,7 @@ void home_admin();
         void register_student(string student_file, string student_id, int semister);
         void update_continious_evolution_mark(string person_id);
         void make_marksheet();
+        void take_attendance(vector<string> rolls, string batch_serial, int course_num, int semister_num);
 
     void home_admin_control_reports();
 
