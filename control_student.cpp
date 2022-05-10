@@ -304,5 +304,17 @@ void make_marksheet()
             }
 
         }
+}
 
+void take_attendance(vector<string> rolls, string batch_serial, int course_num, int semister_num)
+{
+    string filename = ".//studentData//batch"+batch_serial+"//";
+    string temp_string;
+    student s;
+
+    for(auto file : rolls)
+    {
+        temp_string = filename + file + ".dat";
+        s.upadate_attendance(temp_string,semister_num,course_num);
+    }
 }
