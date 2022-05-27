@@ -37,45 +37,7 @@ int convert_stringToNumber(string s)
     return num;
 }
 
-string convert_numberToString(int number)
-{
-    int n = INT_MIN;
-    char buffer[50];
-    int i = 0;
-
-    bool isNeg = n<0;
-
-    unsigned int n1 = isNeg ? -n : n;
-
-    while(n1!=0)
-    {
-        buffer[i++] = n1%10+'0';
-        n1=n1/10;
-    }
-
-    if(isNeg)
-        buffer[i++] = '-';
-
-    buffer[i] = '\0';
-
-    for(int t = 0; t < i/2; t++)
-    {
-        buffer[t] ^= buffer[i-t-1];
-        buffer[i-t-1] ^= buffer[t];
-        buffer[t] ^= buffer[i-t-1];
-    }
-
-    if(n == 0)
-    {
-        buffer[0] = '0';
-        buffer[1] = '\0';
-    }
-
-    printf(buffer);
-
-}
-
-double string_to_number(string taken_string)
+int string_to_number(string taken_string)
 {
     double num;
     num = stoi(taken_string);
@@ -143,3 +105,22 @@ bool decrypt(string taken_file)
     else
         return false;
 }
+
+bool if_contains_other_char(string given_string)
+{
+    int i,length = calc_string_len(given_string);
+
+    for(i=0;i<length;i++)
+    {
+        if(((given_string[i]>='a')&&(given_string[i]<='z'))||((given_string[i]>='A')&&(given_string[i]<='Z'))||((given_string[i]>='0')&&(given_string[i]<='9')))
+            continue;
+        else
+            break;
+    }
+    if(i==length)
+        return true;
+    else
+        return false;
+}
+
+
