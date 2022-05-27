@@ -1,8 +1,9 @@
 #include "header.h"
 using namespace std;
 
-void home_student()
+void home_student(string studentID)
 {
+    string student_filename = retfileNameFromID(studentID);
     string rept_stu_to_admin(".//reports//student_to_admin.txt");
     string report;
     int choice;
@@ -54,6 +55,16 @@ void home_student()
             }
         }
 
+    }
+    if(choice==1)
+    {
+        int course_count;
+        basic_window();
+        student s;
+        cout<<s.view_student_basic_info_file(student_filename);
+        for(course_count=0;course_count<6;course_count++)
+        cout<<s.view_student_course_condition(student_filename,s.ret_current_semsister(student_filename),course_count);
+        cout<<s.view_student_semister_contdition(student_filename,s.ret_current_semsister(student_filename));
     }
 }
 
