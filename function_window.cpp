@@ -133,7 +133,7 @@ bool two_confirmation_popup(string title, string option1, string option2)
     }
 }
 
-bool confirmation_popup(string title)
+void confirmation_popup(string title)
 {
     int total_string_length = calc_string_len(title);
     int i=116/2;
@@ -156,6 +156,9 @@ bool confirmation_popup(string title)
     }
     gotoxy(j+5,16);
     cout<<title;
+
+    Sleep(5000);
+    return;
 }
 
 vector<string> taking_list_input_on_window(string *option_array, int size, int side)
