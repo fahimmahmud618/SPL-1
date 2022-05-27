@@ -10,17 +10,16 @@
 #include <stdlib.h>
 #include <string>
 #include <cstring>
+#include <climits>
 #include <direct.h>
+#include <sstream>
 #include <ftw.h>
-#include "person.h"
 #include "all_class.h"
-#include "student.h"
-#include "academic.h"
-#include "semester_course.h"
 
 using namespace std;
-
+bool if_contains_other_char(string given_string);
 void login();
+void user_login();
 void color(int color);
 
 //function_window
@@ -65,8 +64,9 @@ void home_admin();
     void home_admin_control_reports();
 
 void home_teacher(string teacher_id);
-void home_student();
+void home_student(string personID);
     string taking_report();
+string retfileNameFromID(string id);
 
 
 
