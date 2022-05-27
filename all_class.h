@@ -51,7 +51,7 @@ public:
         cout<<address;
         cout<<age;
     }
-    void SetInformation()
+   /* void SetInformation()
     {
         cout<<"Name : ";
         getline(cin>>ws,name);
@@ -62,7 +62,7 @@ public:
         cout<<"Age : ";
         cin>>age;
 
-    }
+    }*/
 
 };
 /*float class_test;
@@ -82,7 +82,13 @@ public:
 
     student()
     {
-
+        name="No name";
+        address="Unknown/no data";
+        age=0;
+        id="0000";
+        current_semister=0;
+        mail_add="No information";
+        contract_num="NO information";
     }
     student(string filename, string taken_id,int given_current_semister)
     {
@@ -182,14 +188,20 @@ public:
 
     string view_student_basic_info_file(string filename)
     {
+        string a;
+        //string a= to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
+        //cout<<a;
        ifstream in(filename,ios::binary);
         if(in)
         {
             in.read((char*)this,sizeof(*this));
             //batch serial      id      name        cgpa        contract num        mailAddress
-            return to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
+            a= to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
             in.close();
         }
+        else
+            a= "Error Happened";
+        return a;
     }
 
     string view_student_course_condition(string filename, int semister_num, int course_num)
@@ -347,7 +359,7 @@ public:
         ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(teacher));
             //id        name    age     address     mail        contract nm     courses
             return id+"\t"+name+"\t"+to_string(age)+"\t"+address+"\t"+mail_add+"\t"+contract_num+"\t";
         }
@@ -358,7 +370,7 @@ public:
         fstream in(taken_teacher_filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(teacher));
             name=taken_name;
             address = taken_address;
             mail_add=taken_mail;
@@ -366,6 +378,7 @@ public:
             age = taken_age;
             in.write((char*)this,sizeof(*this));
         }
+        cout<<"hoyeseee";
     }
 
 };
