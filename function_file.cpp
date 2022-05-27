@@ -1,15 +1,5 @@
 #include "header.h"
 
-bool string_binary_search(string filename, int line, string search_thing)
-{
-
-}
-
-int binarySearch(string arr[], string key, int size)
-{
-
-}
-
 vector<string> list_of_files(string folder)
 {
     vector<string> names;
@@ -63,12 +53,16 @@ vector<string> ret_selected_course_of_teacher(string teacher_id)
 
 vector<int> ret_selected_course_num(vector<string> courses)
 {
-    string temp, option[10];
+    string temp, option[10],t1,t2;
     vector<int> outputs;
     int i=0,size = courses.size();
     for(auto t:courses)
     {
-        option[i]="Semister "+to_string(t[0])+"Course "+to_string(t[2]);        //ektu bug to string e
+        t1.clear();
+        t2.clear();
+        t1.push_back(t[0]);
+        t1.push_back(t[2]);
+        option[i]="Semister: "+t1+" Course: "+t2;
         i++;
     }
     int choice = option_input_on_window(option,i,2);
@@ -108,5 +102,13 @@ string ret_batchSerial(string semister_num)
         }
     }
     return temp_string;
+}
+
+string retfileNameFromID(string id)
+{
+    string a;
+    a.push_back(id[0]);
+    a.push_back(id[1]);
+    return ".//studentData//batch"+a+"//"+id+".dat";
 }
 
