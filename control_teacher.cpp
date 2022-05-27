@@ -71,15 +71,22 @@ void home_admin_control_teacher()
 void edit_teacher_basic_info(string teacher_id)
 {
     string filename = ".//teacherData//"+teacher_id+".dat",window_option[10];
-    teacher t;
-    window_option[0]="Enter teacher name: ";
-    window_option[1]="Enter teacher's age: ";
-    window_option[2]="Enter teacher's address: ";
-    window_option[3]="Enter teacher's mail-address: ";
-    window_option[4]="Enter teacher's contract-num: ";
+    if(check_file_if_exits(filename,".//teacherData"))
+    {
+        teacher t;
+        window_option[0]="Enter teacher name: ";
+        window_option[1]="Enter teacher's age: ";
+        window_option[2]="Enter teacher's address: ";
+        window_option[3]="Enter teacher's mail-address: ";
+        window_option[4]="Enter teacher's contract-num: ";
 
-    vector<string> inputs = taking_list_input_on_window(window_option,5,2);
-    t.set_Teacher_info_basic(filename,inputs[0],inputs[2],stoi(inputs[1]),inputs[3],inputs[4]);
+        vector<string> inputs = taking_list_input_on_window(window_option,5,2);
+        t.set_Teacher_info_basic(filename,inputs[0],inputs[2],stoi(inputs[1]),inputs[3],inputs[4]);
+        confirmation_popup("Record saved successfully");
+    }
+    else
+        confirmation_popup("No such teacher found");
+
 }
 
 void view_teacher_info_func(string teacher_id)
@@ -89,7 +96,7 @@ void view_teacher_info_func(string teacher_id)
     {
             vector<string> files = list_of_files(".//teacherData");
             for(auto teacher_file : files)
-                cout<<t.view_teacher_info(teacher_file)<<endl;
+                cout<<t.view_teacher_info(".//teacherData"+teacher_file)<<endl;
     }
     else
     {
