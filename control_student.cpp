@@ -22,13 +22,13 @@ void home_admin_control_student()
     }
     else if(choice==2)
     {
-        window_option[0]="Enter batch serial of the student: ";
+        window_option[0]="Enter batch serial: ";
         window_option[1]="Enter the student id: ";
         inputs = taking_list_input_on_window(window_option,2,2);
 
         batch_serial=inputs[0];
         student_id=inputs[1];
-        //modify_student(batch_serial,student_id);
+        modify_student(convert_stringToNumber(batch_serial),convert_stringToNumber(student_id));
     }
     else if(choice==3)
     {
@@ -114,7 +114,7 @@ void add_student()
 
 void register_student(string student_file, string student_id, int semister)
 {
-    student s(student_file, student_id, semister); //eta to etar header file git e update kora hoini
+    student s(student_file, student_id, semister);
 }
 
 void delete_student()
@@ -239,13 +239,13 @@ void view_student_info_basic(string batch_serial, string student_id)        //te
     {
         makefilename=".//studentData//batch"+batch_serial;
         vector<string> files = list_of_files(makefilename);
-        for(auto student_file : files)
-            cout<<s.view_student_basic_info_file(student_file)<<endl;
+        //for(auto student_file : files)
+            ////cout<<s.view_student_basic_info_file(student_file)<<endl;
     }
     else
     {
         makefilename=".//studentData//batch"+batch_serial+student_id+".dat";
-            cout<<s.view_student_basic_info_file(makefilename)<<endl;
+            ////cout<<s.view_student_basic_info_file(makefilename)<<endl;
     }
 }
 
@@ -318,3 +318,47 @@ void take_attendance(vector<string> rolls, string batch_serial, int course_num, 
         s.upadate_attendance(temp_string,semister_num,course_num);
     }
 }
+
+void modify_student(int batch_serial, int student_id)
+{
+    int e,age;
+    string filename = retfileNameFromID(to_string(student_id)),window_option[5];
+    ifstream in;
+    try
+    {
+        in.open(filename);
+        if(in)
+            {
+                student s;
+                window_option[0]="Enter student name: ";
+                window_option[1]="Enter student's age: ";
+                window_option[2]="Enter student's address: ";
+                window_option[3]="Enter student's mail-address: ";
+                window_option[4]="Enter student's contract-num: ";
+
+                vector<string> inputs = taking_list_input_on_window(window_option,5,2);
+                try{
+                    age = convert_stringToNumber(inputs[1]);
+                    s.set_Student_info_basic(filename,inputs[0],inputs[2],convert_stringToNumber(inputs[1]),inputs[3],inputs[4]);
+                    confirmation_popup("Record saved successfully");
+
+                }catch(int e)
+                {
+                    confirmation_popup("Error in input");
+                    Sleep(2000);
+                    modify_student(batch_serial,student_id);
+                }
+            }
+        else
+            throw e;
+
+    }
+    catch(int e)
+    {
+        confirmation_popup("No such file found");
+        Sleep(2000);
+        home_admin_control_student();
+    }
+
+}
+
