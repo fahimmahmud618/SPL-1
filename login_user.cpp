@@ -37,6 +37,7 @@ void user_login()
     int temp_hash_value;
     string personID, password, personType, treeInput;
 
+    ebcdic_decrypt("loginFile.txt");
 	ifstream in("loginFile.txt");
 	in>>personID;
     while(in.eof()==0)
@@ -53,6 +54,7 @@ void user_login()
        // cout<<treeInput<<" "<<temp_hash_value<<endl;
     }
 
+    ebcdic_encrypt("loginFile.txt");
     string id,given_password;
 
 	//basic_window();
@@ -100,6 +102,53 @@ void user_login()
       system("cls");
       user_login();
    }
-
-
 }
+
+bool change_password(string id, string type)
+{
+    string personID,personType,old_pass,new_password,personPassword,login_file = "loginFile.txt";
+    ebcdic_decrypt(login_file);
+    ifstream in(login_file);
+    ofstream output;
+    output.open("temp",ios::binary);
+    bool flag = false;
+
+    basic_window();
+    gotoxy(15,10);
+    cout<<"Enter Your Old password: "<<endl;
+    gotoxy(45,10);
+    cin>>old_pass;
+
+    in>>personID;
+    output<<"N"<<endl;
+    while(in.eof()==0)
+    {
+        in>>personID;
+        in>>personPassword;
+        in>>personType;
+
+        if((id==personID)&&(type==personType))
+        {
+            cout<<"found";
+            gotoxy(15,11);
+            cout<<"Enter Your new Password: "<<endl;
+            gotoxy(45,11);
+            cin>>new_password;
+            personPassword = new_password;
+            flag = true;
+
+        }
+
+            output<<personID+" "+personPassword+" "+personType<<endl;
+    }
+    char filename[] = "loginFile.txt";
+    char ch,oldname[]="temp" ;
+    char* newname= &login_file[0];
+    in.close();
+    output.close();
+    cout<<remove(filename);
+    rename(oldname,newname);
+
+   return flag;
+}
+
