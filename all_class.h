@@ -108,13 +108,13 @@ public:
         fstream in(taken_student_filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(student));
             name=taken_name;
             address = taken_address;
             age = taken_age;
             mail_add = taken_mail;
             contract_num = taken_contract;
-            in.write((char*)this,sizeof(*this));
+            in.write((char*)this,sizeof(student));
         }
     }
 
@@ -123,7 +123,7 @@ public:
         ifstream in(taken_student_filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(student));
             if(action)
                 current_semister++;
             else
@@ -135,7 +135,7 @@ public:
         ofstream out(taken_student_filename,ios::binary);
         if(out)
         {
-            out.write((char*)this,sizeof(*this));
+            out.write((char*)this,sizeof(student));
             out.close();
         }
         else
@@ -147,7 +147,7 @@ public:
         ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(student));
             semesters[semister_num].courses[course_num].continious_evolution_total_mark += mark;
             in.close();
         }
@@ -169,7 +169,7 @@ public:
         ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(student));
             semesters[semister_num].courses[course_num].attendance_cout ++;
             in.close();
         }
@@ -179,7 +179,7 @@ public:
         ofstream out(filename,ios::binary);
         if(out)
         {
-            out.write((char*)this,sizeof(*this));
+            out.write((char*)this,sizeof(student));
             out.close();
         }
         else
@@ -189,12 +189,10 @@ public:
     string view_student_basic_info_file(string filename)
     {
         string a;
-        //string a= to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
-        //cout<<a;
        ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
+            in.read((char*)this,sizeof(student));
             //batch serial      id      name        cgpa        contract num        mailAddress
             a= to_string(batch_serial)+" "+id+" "+name+" "+to_string(current_semister)+" "+to_string(cgpa)+" "+contract_num+" "+mail_add;
             in.close();
@@ -209,7 +207,7 @@ public:
         ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));     //gpa have to be added
+            in.read((char*)this,sizeof(student));
             return id+"\t"+name+"\t"+to_string(semesters[semister_num].courses[course_num].attendance_cout)+"\t"+to_string(semesters[semister_num].courses[course_num].class_test)+"\t"+to_string(semesters[semister_num].courses[course_num].midterm_mark)+"\t"+to_string(semesters[semister_num].courses[course_num].final_mark);
             in.close();
         }
@@ -224,8 +222,8 @@ public:
         ifstream in(filename,ios::binary);
         if(in)
         {
-            in.read((char*)this,sizeof(*this));
-            return id+"\t"+name+"\n"+course_number_string;   //cga have to be addded and other things
+            in.read((char*)this,sizeof(student));
+            return id+"\t"+name+"\n"+course_number_string;
             in.close();
         }
 
@@ -378,7 +376,7 @@ public:
             age = taken_age;
             in.write((char*)this,sizeof(*this));
         }
-        cout<<"hoyeseee";
+        cout<<"done";
     }
 
 };
