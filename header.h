@@ -18,7 +18,7 @@
 
 using namespace std;
 bool if_contains_other_char(string given_string);
-void login();
+bool change_password(string id, string type);
 void user_login();
 void color(int color);
 
@@ -60,6 +60,7 @@ void home_admin();
         void update_continious_evolution_mark(string person_id);
         void make_marksheet();
         void take_attendance(vector<string> rolls, string batch_serial, int course_num, int semister_num);
+        void set_assignment(string batch_serial);
 
     void home_admin_control_reports();
 
@@ -68,7 +69,16 @@ void home_student(string personID);
     string taking_report();
 string retfileNameFromID(string id);
 
+//ebcdic
+string convert_to_four_bit(string x);
+string dec_to_binary_convert(int n);
+int binary_to_decimal(int n);
+char ret_char_from_code(string zone_code, string digit_code);
+string ret_digit_bit(char x);
+string ret_zone_bit(char x);
+void ebcdic_encrypt(string taken_file);
+void ebcdic_decrypt(string taken_file);
 
-
-
+void attendance_counter(string fileName);
+//void LIS_NAIVE(int n, int x[N], int &maxlen);
 #endif // HEADER_H_INCLUDED
