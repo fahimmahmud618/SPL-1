@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1653843240 source:f:\spl1final\spl1_1231\control_student.cpp
+	"header.h"
+
+1653841845 f:\spl1final\spl1_1231\header.h
+	<iostream>
+	<bits/stdc++.h>
+	<fstream>
+	<windows.h>
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string>
+	<cstring>
+	<climits>
+	<direct.h>
+	<sstream>
+	<ftw.h>
+	"all_class.h"
+
+1653843358 f:\spl1final\spl1_1231\all_class.h
+	"header.h"
+
+1653643231 source:f:\spl1final\spl1_1231\control_teacher.cpp
+	"header.h"
+
+1653646967 source:f:\spl1final\spl1_1231\function_basic.cpp
+	"header.h"
+
+1653841870 source:f:\spl1final\spl1_1231\function_file.cpp
+	"header.h"
+
+1653642788 source:f:\spl1final\spl1_1231\function_window.cpp
+	"header.h"
+
+1653754766 source:f:\spl1final\spl1_1231\home_admin.cpp
+	"header.h"
+
+1653832942 source:f:\spl1final\spl1_1231\home_student.cpp
+	"header.h"
+
+1653832942 source:f:\spl1final\spl1_1231\home_teacher.cpp
+	"header.h"
+
+1653841915 source:f:\spl1final\spl1_1231\main.cpp
+	"header.h"
+
+1653834949 source:f:\spl1final\spl1_1231\login_user.cpp
+	"header.h"
+	"bplustree.h"
+
+1653834373 f:\spl1final\spl1_1231\b_plus_tree.h
+
+1653761876 source:f:\spl1final\spl1_1231\ebcdic_encryption.cpp
+	"header.h"
+
+1653843098 f:\spl1final\spl1_1231\bplustree.h
+
+1653837986 f:\spl1final\spl1_1231\b_plus.h
+
