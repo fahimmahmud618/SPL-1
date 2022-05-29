@@ -36,7 +36,7 @@ void home_admin_control_student()
     }
     else if(choice==4)
     {
-        //view_student_info();
+        view_student_info();
     }
     else
     {
@@ -189,7 +189,7 @@ void update_continious_evolution_mark(string person_id)
     student s;
 
     string batch_serial = ret_batchSerial(to_string(choice[0]));
-    string filename = ".//studentData//"+batch_serial, temp_string;      //modification needed
+    string filename = ".//studentData//"+batch_serial, temp_string;
 
     if(two_confirmation_popup("How do you want to update the mark?","Batchwise","Personally"))
     {
@@ -203,15 +203,10 @@ void update_continious_evolution_mark(string person_id)
         vector<string> taken_marks = taking_list_input_on_window(window_option,i,1);
         for(i=0;i<student_files.size();i++)
         {
-            temp_string = filename+student_files[i];
+            temp_string = filename+"//"+student_files[i];
             s.upadate_continious_evolution_mark(temp_string,stof(taken_marks[i]),choice[0],choice[1]);
 
         }
-        /*for((auto student_file1 : student_files)&&( auto mark : taken_marks))
-        {
-            s.upadate_continious_evolution_mark(student_file1,stof(mark),choice[0],choice[1]);
-        }*/
-        //s.upadate_continious_evolution_mark(func_makeFilename("12","1201"),2.3,choice[0],choice[1]);
     }
     else
     {
@@ -225,27 +220,25 @@ void update_continious_evolution_mark(string person_id)
 
 }
 
-void view_student_info_basic(string batch_serial, string student_id)        //test needed+modification
+void view_student_info_basic(string batch_serial, string student_id)
 {
     int choice;
     string makefilename,option_window[5];
     char* filename;
     student s;
-    /*option_window[0]="Batch wise Info";
-    option_window[1]="Student in-person info";
-    choice = option_input_on_window(option_window,2,2);*/
+
 
     if(student_id=="All")
     {
         makefilename=".//studentData//batch"+batch_serial;
         vector<string> files = list_of_files(makefilename);
-        //for(auto student_file : files)
-            ////cout<<s.view_student_basic_info_file(student_file)<<endl;
+        for(auto student_file : files)
+            cout<<s.view_student_basic_info_file(student_file)<<endl;
     }
     else
     {
         makefilename=".//studentData//batch"+batch_serial+student_id+".dat";
-            ////cout<<s.view_student_basic_info_file(makefilename)<<endl;
+            cout<<s.view_student_basic_info_file(makefilename)<<endl;
     }
 }
 
@@ -359,6 +352,127 @@ void modify_student(int batch_serial, int student_id)
         Sleep(2000);
         home_admin_control_student();
     }
+
+}
+
+#define UP 1
+#define LEFT 2
+#define DIAGONAL 3
+#define N 1000
+
+void LIS_NAIVE(int n, int x[N], int &maxlen)
+{
+
+    int L[N];
+    L[0]=0;
+
+    for (int i=1;i<= n;i++)
+    {
+        L[i]=0;
+
+        for (int j=0;j<=i;j++)
+        {
+            if (x[j]<x[i] and L[j]+1>L[i])
+            {
+                L[i]=L[j]+1;
+            }
+
+            if (L[i] >= maxlen)
+            {
+                maxlen = L[i];
+            }
+        }
+    }
+}
+
+void attendance_counter(string fileName)
+{
+
+    vector<int> student_id;
+    vector<vector<int>> attendance;
+
+    int line_count = 1;
+    ifstream file(fileName);
+    string line;
+
+    while (getline(file, line))
+    {
+        line_count++;
+
+        if (line_count & 1 == 1)
+        {
+            vector<int> temp;
+
+            for (int i = 0; i < line.size(); i++)
+            {
+
+                if (line[i] == ' ')
+                {
+                    continue;
+                }
+                else
+                {
+                    temp.push_back(line[i] - '0');
+                }
+            }
+
+            attendance.push_back(temp);
+        }
+        else
+        {
+
+            student_id.push_back(stoi(line));
+        }
+    }
+
+    for (int i = 0; i < attendance.size(); i++)
+    {
+        cout << student_id[i] << "==> ";
+
+        int max_attendance = 0;
+        LIS_NAIVE(attendance[i].size(), attendance[i].data(), max_attendance);
+
+        for (int j = 0; j < attendance[i].size(); j++)
+        {
+            cout <<attendance[i][j]<< " ";
+        }
+
+        cout << "------> " << max_attendance << endl;
+        cout << endl;
+    }
+
+    file.close();
+}
+
+void set_assignment(string batch_serial)
+{
+    ofstream file;
+    string filename = ".//studentData//batch"+batch_serial+"//assignment.txt";
+            file.open(filename,std::ios_base::app);
+            if(file.is_open())
+            {
+               string report = taking_report();
+               file<<report<<endl;
+
+               file.close();
+
+                confirmation_popup("Assignment sent succcesfully");
+            }
+}
+
+void view_student_info()
+{
+    string student_id;
+
+    basic_window();
+    cout<<"Enter the Student ID: ";
+    cin>>student_id;
+
+    string filename = retfileNameFromID(student_id);
+    student s(retfileNameFromID("1231"),"1231",1);
+    cout<<s.view_student_basic_info_file(filename)<<endl;
+    cout<<s.view_student_course_condition(filename,1,1)<<endl;
+    cout<<s.view_student_semister_contdition(filename,1)<<endl;
 
 }
 
