@@ -14,8 +14,9 @@ void home_admin()
     window_option[0]="Control Teacher";
     window_option[1]="Control Student";
     window_option[2]="Reports";
+    window_option[3]="Change Password";
 
-    choice = option_input_on_window(window_option,3,1);
+    choice = option_input_on_window(window_option,4,1);
 
     if(choice==1)
     {
@@ -28,6 +29,10 @@ void home_admin()
     else if(choice==3)
     {
         home_admin_control_reports();
+    }
+    else if(choice==4)
+    {
+        cout<<change_password("1231","1");
     }
     else
     {
